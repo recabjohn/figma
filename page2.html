@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise UI Replica - Page 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-primary: #1e3a62;
+      --sidebar-bg: #22374C;
+      --sidebar-active: #405D7C;
+      --bg-canvas: #edf0f3;
+      --green-success: #209E51;
+      --text-main: #333333;
+      --text-muted: #5d6773;
+      --border-color: #d1d9df;
+      --details-header: #4F6F8E;
+      --btn-bg: #375471;
+      --light-blue: #3e9fdd;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* TOP HEADER */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      background-color: #ffffff;
+      padding: 0 24px;
+      border-bottom: 2px solid #dde1e5;
+      z-index: 20;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background-color: #55279b;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .main-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 60px;
+      background: var(--sidebar-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .side-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .side-icon.active { background-color: var(--sidebar-active); }
+
+    .page-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .inner-canvas {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    /* STEPPER WRAPPER */
+    .stepper-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stepper-card {
+      background-color: #ffffff;
+      padding: 16px 24px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 80px; 
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      z-index: 2;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #444;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .step.completed { color: var(--green-success); }
+    .step.completed i { font-size: 16px; }
+
+    .step.active span {
+      border-bottom: 2px solid var(--details-header);
+      padding-bottom: 4px;
+      color: #333;
+    }
+
+    .secondary-tabs {
+      display: flex;
+      background: #fff;
+      border-bottom: 1px solid var(--border-color);
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      width: fit-content;
+      margin-top: -1px;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+      padding: 0 8px;
+    }
+
+    .sec-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .sec-tab.active {
+      color: var(--details-header);
+    }
+    
+    .sec-tab.active span {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .sec-tab i { font-size: 14px; }
+
+    /* DETAILS PANEL */
+    .details-panel {
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .details-panel.collapsed {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .details-header {
+      background-color: var(--details-header);
+      color: #ffffff;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      gap: 16px;
+    }
+    .details-panel.collapsed .details-header {
+      border-radius: 4px;
+      padding: 8px 16px;
+    }
+
+
+
+    .details-grid {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 24px;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .detail-item .label {
+      font-size: 12px;
+      color: #4e5a66;
+      font-weight: 700;
+    }
+
+    .detail-item .val {
+      font-size: 13px;
+      color: #222222;
+      font-weight: 700;
+    }
+
+    /* ACCORDION AREA */
+    .accordion-card {
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      margin-bottom: auto; /* pushes buttons to bottom if needed, or just let it flow */
+    }
+
+    .acc-row {
+      display: flex;
+      align-items: center;
+      padding: 20px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #222;
+      cursor: pointer;
+    }
+
+    .acc-row:not(:last-child) {
+      border-bottom: 2px solid #f0f3f6; /* spacer line */
+      padding-bottom: 40px; /* match the spacing in image */
+    }
+
+    .acc-icon {
+      color: var(--text-muted);
+      margin-right: 12px;
+      font-size: 12px;
+    }
+
+    .plus-icon {
+      color: var(--light-blue); /* blue plus */
+      margin-left: 12px;
+      font-size: 16px;
+    }
+
+    /* STATE FORM */
+    .state-form-container {
+      padding: 0 24px 32px 48px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .custom-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 13px;
+      color: #555;
+      outline: none;
+      appearance: none;
+      background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat right 12px center;
+      cursor: pointer;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-save {
+      background-color: var(--sidebar-bg); /* Dark blue to match image */
+      color: #ffffff;
+      padding: 8px 16px;
+    }
+
+    /* BUTTONS */
+    .bottom-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+
+    .btn {
+      border: none;
+      padding: 8px 24px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-prev, .btn-next {
+      background-color: var(--btn-bg);
+      color: #ffffff;
+    }
+
+    /* NEW FORM ELEMENTS */
+    .radio-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #333;
+    }
+    .radio-labels { flex: 0 0 50%; }
+    .radio-options { flex: 1; display: flex; gap: 120px; }
+    .radio-option { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; cursor: pointer; }
+    .custom-radio {
+      appearance: none; -webkit-appearance: none;
+      width: 16px; height: 16px; border: 2px solid var(--blue-primary);
+      border-radius: 50%; position: relative; cursor: pointer; margin: 0;
+    }
+    .custom-radio:checked::after {
+      content: ""; width: 8px; height: 8px;
+      background-color: var(--blue-primary); border-radius: 50%;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    .custom-input {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border-color);
+      border-radius: 4px; font-size: 13px; color: #333; outline: none;
+    }
+    .floating-group { position: relative; margin-bottom: 24px; }
+    .floating-group label {
+      font-size: 11px; color: #5d6773; position: absolute; top: -16px; left: 0;
+    }
+    .subheader {
+      font-size: 14px; font-weight: 700; color: #444; margin-top: 32px; margin-bottom: 16px;
+    }
+    .inner-card {
+      border: 1px solid var(--border-color); border-radius: 4px; padding: 24px;
+      margin-bottom: 24px; background-color: #fdfdfd;
+    }
+
+    /* VEHICLE TABLE */
+    .vehicle-table-container {
+      margin: 0 24px 24px 44px;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .v-table-header {
+      display: flex;
+      background-color: #dceaf4;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .v-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .v-line {
+      height: 1px;
+      background-color: #a4b3c0;
+      width: 80%;
+    }
+
+    .v-table-body {
+      padding: 16px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #111;
+      background-color: #ffffff;
+    }
+
+    /* FOOTER */
+    .footer {
+      height: 48px;
+      background-color: #e6e9eb;
+      border-top: 1px solid #d5dade;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      color: #6e7782;
+      z-index: 10;
+    }
+    .footer .brand {
+      color: var(--light-blue);
+      font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <div class="logo">
+      <img src="download.jfif" alt="Solartis" style="height: 28px; width: auto;" />
+    </div>
+    <div class="header-tools">
+      <i class="fa-regular fa-file-lines" style="cursor: pointer"></i>
+      <i class="fa-regular fa-bell" style="cursor: pointer"></i>
+      <div class="avatar" style="cursor: pointer">U</div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="side-icon">
+        <i class="fa-solid fa-home"></i>
+      </div>
+      <div class="side-icon active">
+        <i class="fa-solid fa-edit"></i>
+      </div>
+      <div class="side-icon">
+        <i class="fa-solid fa-search"></i>
+      </div>
+      <div class="side-icon">
+        <i class="fa-solid fa-cog"></i>
+      </div>
+    </aside>
+
+    <main class="page-content">
+      <div class="inner-canvas">
+        
+        <div class="stepper-wrapper">
+          <div class="stepper-card">
+            <div class="step completed">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Agency & Agent</span>
+            </div>
+            <div class="step completed">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Insured Details</span>
+            </div>
+            <div class="step completed">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Program Selection</span>
+            </div>
+            <div class="step active">
+              <i class="fa-solid fa-file-alt"></i>
+              <span>Risk/Coverage</span>
+            </div>
+            <div class="step">
+              <i class="fa-solid fa-file-alt"></i>
+              <span>Program Selection</span>
+            </div>
+          </div>
+          <div class="secondary-tabs">
+            <div class="sec-tab active" id="tab-gl" onclick="switchTab('gl')">
+              <i class="fa-regular fa-circle-down"></i>
+              <span>General Liability</span>
+            </div>
+            <div class="sec-tab" id="tab-ca" onclick="switchTab('ca')">
+              <i class="fa-regular fa-circle-down"></i>
+              <span>Commercial Automobile</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-panel" id="details-panel">
+          <div class="details-header" onclick="toggleDetails()">
+            <span>DETAILS</span>
+            <i class="fa-solid fa-chevron-down" id="details-chevron"></i>
+          </div>
+
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="label">Agency Name</span>
+              <span class="val">TestAgency9590</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Agent Name</span>
+              <span class="val">testagent1003</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Submission Number</span>
+              <span class="val">SN131907</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Submission Status</span>
+              <span class="val">In Progress</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Insured Name</span>
+              <span class="val">test test</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="content-gl">
+          <div class="accordion-card">
+            <div class="acc-row" id="state-row">
+              <i class="fa-solid fa-chevron-down acc-icon"></i>
+              STATE 
+              <i class="fa-solid fa-circle-plus plus-icon" id="add-state-btn" style="cursor: pointer;"></i>
+            </div>
+
+            <div class="state-form-container" id="state-form" style="display: none;">
+              <div class="form-group" style="position: relative; margin-top: 16px;">
+                <label id="lbl-state" style="display: none; font-size: 11px; color: #5d6773; position: absolute; top: -16px; left: 0;">State *</label>
+                <select class="custom-select" id="state-select">
+                  <option value="" disabled selected hidden>State *</option>
+                  <option value="AK">Alaska</option>
+                  <option value="CA">California</option>
+                  <option value="NY">New York</option>
+                  <option value="TX">Texas</option>
+                </select>
+              </div>
+              <div class="form-group" id="subline-group" style="display: none; position: relative; margin-top: 28px;">
+                <label style="font-size: 11px; color: #5d6773; position: absolute; top: -16px; left: 0;">Subline *</label>
+                <select class="custom-select" id="subline-select">
+                  <option value="" disabled selected hidden>Select</option>
+                  <option value="1">Premises/Operations and Products/Completed Operations</option>
+                  <option value="2">Premises/Operations</option>
+                  <option value="3">Products/Completed Operations</option>
+                  <option value="4">Liquor</option>
+                  <option value="5">Owners and Contractors</option>
+                  <option value="6">Pollution</option>
+                  <option value="7">Product Withdrawal</option>
+                  <option value="8">Railroad</option>
+                  <option value="9">Underground Storage Tank</option>
+                  <option value="10">Electronic Data Liability</option>
+                </select>
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-save">Save</button>
+              </div>
+            </div>
+
+            <div class="acc-row" style="border-top: 2px solid #f0f3f6;">
+              <i class="fa-solid fa-chevron-right acc-icon"></i>
+              RISK SCHEDULE
+            </div>
+          </div>
+        </div>
+
+        <div id="content-ca" style="display: none;">
+          <div class="accordion-card">
+            <div class="acc-row" id="policy-row" style="border-bottom: 2px solid #f0f3f6;">
+              <i class="fa-solid fa-chevron-down acc-icon"></i>
+              POLICY 
+              <i class="fa-solid fa-circle-plus plus-icon" id="add-policy-btn" style="cursor: pointer;"></i>
+            </div>
+            
+            <div class="state-form-container" id="policy-form-container" style="display: none; padding-bottom: 24px;">
+              <div class="form-group" style="position: relative;">
+                <label id="lbl-policy-state" style="display: none; font-size: 11px; color: #5d6773; position: absolute; top: -16px; left: 0;">State *</label>
+                <select class="custom-select" id="policy-state-select">
+                  <option value="" disabled selected hidden>State *</option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="CA">California</option>
+                </select>
+                <p id="policy-state-error" style="color: #d9534f; font-size: 11px; margin-top: 4px; display: none;">State is required.</p>
+              </div>
+
+              <div id="policy-details" style="display: none; margin-top: 24px;">
+                <div class="floating-group">
+                  <label>NAICS Code *</label>
+                  <select class="custom-select"><option>111110</option></select>
+                </div>
+                <div class="floating-group">
+                  <label>NAICS Definition *</label>
+                  <select class="custom-select"><option>Soybean Farming</option></select>
+                </div>
+                <div class="radio-row">
+                  <div class="radio-labels">Symbol Rating Applies *</div>
+                  <div class="radio-options">
+                    <label class="radio-option"><input type="radio" name="sym" checked class="custom-radio"> No</label>
+                    <label class="radio-option"><input type="radio" name="sym" class="custom-radio"> Yes</label>
+                  </div>
+                </div>
+                <div class="radio-row">
+                  <div class="radio-labels">Rate With RACA *</div>
+                  <div class="radio-options">
+                    <label class="radio-option"><input type="radio" name="raca" checked class="custom-radio"> No</label>
+                    <label class="radio-option"><input type="radio" name="raca" class="custom-radio"> Yes</label>
+                  </div>
+                </div>
+                <div class="floating-group">
+                  <label>Policy Type *</label>
+                  <select class="custom-select"><option>Business Auto Coverage Form</option></select>
+                </div>
+                <div class="radio-row">
+                  <div class="radio-labels">Individual Named Insured On The Policy *</div>
+                  <div class="radio-options">
+                    <label class="radio-option"><input type="radio" name="indi" checked class="custom-radio"> No</label>
+                    <label class="radio-option"><input type="radio" name="indi" class="custom-radio"> Yes</label>
+                  </div>
+                </div>
+                <div class="floating-group">
+                  <label>Legal Entity</label>
+                  <select class="custom-select"><option>Corporation</option></select>
+                </div>
+                <div class="radio-row">
+                  <div class="radio-labels">Accept Certified Acts Of Terrorism Coverage *</div>
+                  <div class="radio-options">
+                    <label class="radio-option"><input type="radio" name="terr" checked class="custom-radio"> No</label>
+                    <label class="radio-option"><input type="radio" name="terr" class="custom-radio"> Yes</label>
+                  </div>
+                </div>
+                <div class="floating-group">
+                  <label>Liability Deductible *</label>
+                  <select class="custom-select"><option>No Deductible</option></select>
+                </div>
+                <div class="floating-group">
+                  <label>Ride Sharing Arrangements Endorsement Indicator *</label>
+                  <select class="custom-select"><option>Not Applicable</option></select>
+                </div>
+
+                <div class="subheader">Uninsured Motorists Coverage</div>
+                <div class="floating-group">
+                  <select class="custom-select"><option disabled selected hidden>Uninsured Motorists Coverage Type *</option></select>
+                </div>
+                <div class="floating-group">
+                  <select class="custom-select"><option disabled selected hidden>Uninsured Motorists Coverage Combined Single Limit *</option></select>
+                </div>
+                <div class="floating-group">
+                  <select class="custom-select"><option disabled selected hidden>Uninsured Motorists Coverage Split Limit *</option></select>
+                </div>
+
+                <div class="radio-row">
+                  <div class="radio-labels">
+                    <div>Gross Receipts Basis Or Mileage Basis</div>
+                    <div style="font-size: 11px; margin-top:4px;">Gross Receipts Basis Or Mileage Basis *</div>
+                  </div>
+                  <div class="radio-options">
+                    <label class="radio-option"><input type="radio" name="gross" checked class="custom-radio"> No</label>
+                    <label class="radio-option"><input type="radio" name="gross" class="custom-radio"> Yes</label>
+                  </div>
+                </div>
+                <div class="radio-row">
+                  <div class="radio-labels">
+                    <div>Experience Rating</div>
+                    <div style="font-size: 11px; margin-top:4px;">Experience Rating</div>
+                  </div>
+                  <div class="radio-options">
+                    <label class="radio-option"><input type="radio" name="exp" checked class="custom-radio"> No</label>
+                    <label class="radio-option"><input type="radio" name="exp" class="custom-radio"> Yes</label>
+                  </div>
+                </div>
+                <div class="radio-row">
+                  <div class="radio-labels">
+                    <div>Schedule Rating</div>
+                    <div style="font-size: 11px; margin-top:4px;">Schedule Rating Applies</div>
+                  </div>
+                  <div class="radio-options">
+                    <label class="radio-option"><input type="radio" name="sch" checked class="custom-radio"> No</label>
+                    <label class="radio-option"><input type="radio" name="sch" class="custom-radio"> Yes</label>
+                  </div>
+                </div>
+
+                <div class="subheader">Minimum Premiums</div>
+                <div style="font-size: 11px; color: #5d6773; margin-bottom: 12px;">Auto Dealers Liability Premium To Reach Minimum Coverage</div>
+                <div style="font-size: 11px; color: #5d6773; margin-bottom: 24px;">Special Types Repossessed Auto Liability Premium To Reach Minimum Coverage</div>
+
+                <div class="inner-card">
+                  <div class="subheader" style="margin-top:0;">Non-Truckers Liability Coverage</div>
+                  <div class="floating-group">
+                    <label>Liability Coverage Type *</label>
+                    <select class="custom-select"><option>Combined Single Limit</option></select>
+                  </div>
+                  <div class="floating-group">
+                    <p style="font-size:11px; color:#5d6773; margin-bottom:4px;">Liability Premium</p>
+                    <label>Liability Limit *</label>
+                    <select class="custom-select"><option>500,000</option></select>
+                  </div>
+                  <div style="font-size:11px; color:#5d6773; margin-bottom:4px;">Liability Deductible</div>
+                  <div class="radio-row">
+                    <div class="radio-labels">With Hold Harmless Agreement *</div>
+                    <div class="radio-options">
+                      <label class="radio-option"><input type="radio" name="hold" checked class="custom-radio"> No</label>
+                      <label class="radio-option"><input type="radio" name="hold" class="custom-radio"> Yes</label>
+                    </div>
+                  </div>
+                  <div class="floating-group">
+                    <label>Cost Of Hire - Insured Providing Primary *</label>
+                    <input type="text" class="custom-input" value="0">
+                  </div>
+                  <div class="floating-group">
+                    <label>Cost Of Hire - Insured Providing Excess *</label>
+                    <input type="text" class="custom-input" value="0">
+                  </div>
+                </div>
+
+                <div class="subheader">Physical Damage Coverages</div>
+                <div class="floating-group">
+                  <label>Other Than Collision Coverage Type *</label>
+                  <select class="custom-select"><option>No Coverage</option></select>
+                </div>
+                <div class="floating-group">
+                  <p style="font-size:11px; color:#5d6773; margin-bottom:4px;">Other Than Collision Premium</p>
+                  <label>Deductible *</label>
+                  <select class="custom-select"><option>Not Applicable</option></select>
+                </div>
+                <div class="floating-group">
+                  <label>Collision Coverage Type *</label>
+                  <select class="custom-select"><option>No Coverage</option></select>
+                </div>
+                <div class="floating-group">
+                  <p style="font-size:11px; color:#5d6773; margin-bottom:4px;">Collision Premium</p>
+                  <label>Deductible *</label>
+                  <select class="custom-select"><option>Not Applicable</option></select>
+                </div>
+                <div class="floating-group">
+                  <input type="text" class="custom-input" placeholder="Zip Code">
+                </div>
+                <div class="floating-group">
+                  <select class="custom-select"><option disabled selected hidden>Non-Ownership Risk Type *</option></select>
+                </div>
+                <div class="floating-group">
+                  <label>Number Of Employees *</label>
+                  <input type="text" class="custom-input" value="0">
+                </div>
+                <div class="floating-group">
+                  <input type="text" class="custom-input" placeholder="Garaging Location">
+                </div>
+                <div class="floating-group">
+                  <select class="custom-select"><option disabled selected hidden>Zip Code *</option></select>
+                </div>
+                <div class="floating-group">
+                  <select class="custom-select"><option disabled selected hidden>Territory *</option></select>
+                </div>
+              </div>
+              
+              <div class="form-actions" style="margin-top: 24px;">
+                <button class="btn btn-save" id="policy-save-btn">Save</button>
+              </div>
+            </div>
+            
+            <div class="acc-row" style="padding-bottom: 24px; border-top: 2px solid #f0f3f6; border-bottom: none;">
+              <i class="fa-solid fa-chevron-down acc-icon"></i>
+              VEHICLE
+              <i class="fa-solid fa-circle-plus plus-icon" style="cursor: pointer;"></i>
+            </div>
+            
+            <div class="vehicle-table-container">
+              <div class="v-table-header">
+                <div class="v-col">Unit<div class="v-line"></div></div>
+                <div class="v-col">Class Code<div class="v-line"></div></div>
+                <div class="v-col">Original Cost New<div class="v-line"></div></div>
+                <div class="v-col">State<div class="v-line"></div></div>
+                <div class="v-col">Year<div class="v-line"></div></div>
+                <div class="v-col">Make<div class="v-line"></div></div>
+                <div class="v-col">Model<div class="v-line"></div></div>
+                <div class="v-col">VIN<div class="v-line"></div></div>
+                <div class="v-col">Vehicle Sub Types<div class="v-line"></div></div>
+                <div class="v-col" style="flex: 0.5;">Action</div>
+              </div>
+              <div class="v-table-body">
+                No Records To Display.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-actions">
+          <button class="btn btn-prev" onclick="window.location.href='index.html'">Previous</button>
+          <button class="btn btn-next" onclick="window.location.href='page3.html'">Next</button>
+        </div>
+      </div>
+      
+      <footer class="footer">
+        <div><span class="brand">Solartis</span> © 2026</div>
+        <div>Powered by <span class="brand">Solartis</span></div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const addStateBtn = document.getElementById('add-state-btn');
+      const stateForm = document.getElementById('state-form');
+      const stateRow = document.getElementById('state-row');
+      
+      const stateSelect = document.getElementById('state-select');
+      const lblState = document.getElementById('lbl-state');
+      const sublineGroup = document.getElementById('subline-group');
+
+      if (addStateBtn && stateForm && stateRow) {
+        addStateBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (stateForm.style.display === 'none') {
+            stateForm.style.display = 'block';
+            stateRow.style.paddingBottom = '20px';
+            stateRow.style.borderBottom = 'none';
+          } else {
+            stateForm.style.display = 'none';
+            stateRow.style.paddingBottom = '40px';
+            stateRow.style.borderBottom = '2px solid #f0f3f6';
+          }
+        });
+      }
+
+      if (stateSelect) {
+        stateSelect.addEventListener('change', () => {
+          if (stateSelect.value) {
+            lblState.style.display = 'block';
+            sublineGroup.style.display = 'block';
+          } else {
+            lblState.style.display = 'none';
+            sublineGroup.style.display = 'none';
+          }
+        });
+      }
+    });
+
+      const addPolicyBtn = document.getElementById('add-policy-btn');
+      const policyFormContainer = document.getElementById('policy-form-container');
+      const policyRow = document.getElementById('policy-row');
+      const policyStateSelect = document.getElementById('policy-state-select');
+      const policyDetails = document.getElementById('policy-details');
+      const lblPolicyState = document.getElementById('lbl-policy-state');
+      const policySaveBtn = document.getElementById('policy-save-btn');
+      const policyStateError = document.getElementById('policy-state-error');
+
+      if (addPolicyBtn && policyFormContainer) {
+        addPolicyBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (policyFormContainer.style.display === 'none') {
+            policyFormContainer.style.display = 'block';
+            policyRow.style.paddingBottom = '20px';
+            policyRow.style.borderBottom = 'none';
+          } else {
+            policyFormContainer.style.display = 'none';
+            policyRow.style.paddingBottom = '40px';
+            policyRow.style.borderBottom = '2px solid #f0f3f6';
+          }
+        });
+      }
+
+      if (policyStateSelect) {
+        policyStateSelect.addEventListener('change', () => {
+          if (policyStateSelect.value) {
+            lblPolicyState.style.display = 'block';
+            policyDetails.style.display = 'block';
+            policyStateError.style.display = 'none';
+          } else {
+            lblPolicyState.style.display = 'none';
+            policyDetails.style.display = 'none';
+          }
+        });
+      }
+
+      if (policySaveBtn) {
+        policySaveBtn.addEventListener('click', () => {
+          if (!policyStateSelect.value) {
+            policyStateError.style.display = 'block';
+          }
+        });
+      }
+
+    function switchTab(tabId) {
+      const tabGL = document.getElementById('tab-gl');
+      const tabCA = document.getElementById('tab-ca');
+      const contentGL = document.getElementById('content-gl');
+      const contentCA = document.getElementById('content-ca');
+
+      if (tabId === 'ca') {
+        tabCA.classList.add('active');
+        tabGL.classList.remove('active');
+        contentCA.style.display = 'block';
+        contentGL.style.display = 'none';
+      } else {
+        tabGL.classList.add('active');
+        tabCA.classList.remove('active');
+        contentGL.style.display = 'block';
+        contentCA.style.display = 'none';
+      }
+    }
+
+    function toggleDetails() {
+      const panel = document.querySelector('.details-panel');
+      const grid = document.querySelector('.details-grid');
+      const icon = document.getElementById('details-chevron');
+      if (panel && grid && icon) {
+        if (panel.classList.contains('collapsed')) {
+          panel.classList.remove('collapsed');
+          grid.style.display = 'flex';
+          icon.classList.remove('fa-chevron-right');
+          icon.classList.add('fa-chevron-down');
+        } else {
+          panel.classList.add('collapsed');
+          grid.style.display = 'none';
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-right');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

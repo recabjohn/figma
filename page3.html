@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise UI Replica - Page 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-primary: #1e3a62;
+      --sidebar-bg: #22374C;
+      --sidebar-active: #405D7C;
+      --bg-canvas: #edf0f3;
+      --green-success: #209E51;
+      --text-main: #333333;
+      --text-muted: #5d6773;
+      --border-color: #d1d9df;
+      --details-header: #4F6F8E;
+      --btn-bg: #375471;
+      --light-blue: #3e9fdd;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* TOP HEADER */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      background-color: #ffffff;
+      padding: 0 24px;
+      border-bottom: 2px solid #dde1e5;
+      z-index: 20;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background-color: #55279b;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .main-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 60px;
+      background: var(--sidebar-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .side-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .side-icon.active { background-color: var(--sidebar-active); }
+
+    .page-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .inner-canvas {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    /* STEPPER WRAPPER */
+    .stepper-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stepper-card {
+      background-color: #ffffff;
+      padding: 16px 24px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      z-index: 2;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #444;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .step.completed { color: var(--green-success); }
+    .step.completed i { font-size: 16px; }
+
+    .step.active span {
+      border-bottom: 2px solid var(--details-header);
+      padding-bottom: 4px;
+      color: #333;
+    }
+
+    /* DETAILS PANEL */
+    .details-panel {
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .details-panel.collapsed {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .details-header {
+      background-color: var(--details-header);
+      color: #ffffff;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      gap: 16px;
+    }
+    .details-panel.collapsed .details-header {
+      border-radius: 4px;
+      padding: 8px 16px;
+    }
+
+
+
+    .details-grid {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 24px;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .detail-item .label {
+      font-size: 12px;
+      color: #4e5a66;
+      font-weight: 700;
+    }
+
+    .detail-item .val {
+      font-size: 13px;
+      color: #222222;
+      font-weight: 700;
+    }
+
+    /* SECTION CARD */
+    .white-card {
+      background-color: #ffffff;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      color: #727a85;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 24px;
+      row-gap: 32px;
+    }
+
+    /* FORM ELEMENTS */
+    .floating-group { position: relative; }
+    .floating-group label {
+      font-size: 11px; color: #5d6773; position: absolute; top: -16px; left: 0;
+    }
+    
+    .custom-select, .custom-input {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border-color);
+      border-radius: 4px; font-size: 13px; color: #333; outline: none;
+      background-color: #fff;
+    }
+    .custom-select {
+      appearance: none;
+      background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat right 12px center;
+    }
+    .custom-select:disabled, .custom-input:disabled {
+      background-color: #f7f9fa;
+      color: #999;
+      cursor: not-allowed;
+    }
+    .icon-input {
+      position: relative;
+    }
+    .icon-input i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aeb6be;
+      pointer-events: none;
+    }
+
+    /* TABLE */
+    .table-container {
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .v-table-header {
+      display: flex;
+      background-color: #dceaf4;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .v-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .v-table-body {
+      padding: 16px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #111;
+      background-color: #ffffff;
+    }
+
+    .section-header {
+      font-size: 16px;
+      font-weight: 500;
+      color: #727a85;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sub-plus {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      font-size: 10px;
+      background-color: #8c97a3;
+      color: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* BUTTONS */
+    .bottom-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+
+    .btn {
+      border: none;
+      padding: 8px 24px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-prev, .btn-next {
+      background-color: var(--btn-bg);
+      color: #ffffff;
+    }
+
+    .footer {
+      height: 48px;
+      background-color: #e6e9eb;
+      border-top: 1px solid #d5dade;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 12px;
+      color: #6e7782;
+      z-index: 10;
+    }
+    .footer .brand { color: var(--light-blue); font-weight: 500; }
+
+    /* Custom Toggle Switch */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    .toggle-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: #727a85;
+      min-width: 200px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider { background-color: #2196F3; }
+    input:checked + .slider:before { transform: translateX(16px); }
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <div class="logo">
+      <img src="download.jfif" alt="Solartis" style="height: 28px; width: auto;" />
+    </div>
+    <div class="header-tools">
+      <i class="fa-regular fa-file-lines" style="cursor: pointer"></i>
+      <i class="fa-regular fa-bell" style="cursor: pointer"></i>
+      <div class="avatar" style="cursor: pointer">U</div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="side-icon">
+        <i class="fa-solid fa-home"></i>
+      </div>
+      <div class="side-icon active">
+        <i class="fa-solid fa-edit"></i>
+      </div>
+      <div class="side-icon">
+        <i class="fa-solid fa-search"></i>
+      </div>
+      <div class="side-icon">
+        <i class="fa-solid fa-cog"></i>
+      </div>
+    </aside>
+
+    <main class="page-content">
+      <div class="inner-canvas">
+        
+        <div class="stepper-wrapper">
+          <div class="stepper-card">
+            <div class="step completed">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Agency & Agent</span>
+            </div>
+            <div class="step completed">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Insured Details</span>
+            </div>
+            <div class="step completed">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Program Selection</span>
+            </div>
+            <div class="step completed">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Risk/Coverage</span>
+            </div>
+            <div class="step active">
+              <i class="fa-solid fa-file-alt"></i>
+              <span>Program Selection</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-panel" id="details-panel">
+          <div class="details-header" onclick="toggleDetails()">
+            <span>DETAILS</span>
+            <i class="fa-solid fa-chevron-down" id="details-chevron"></i>
+          </div>
+
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="label">Agency Name</span>
+              <span class="val">TestAgency9590</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Agent Name</span>
+              <span class="val">testagent1003</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Submission Number</span>
+              <span class="val">SN13203B</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Submission Status</span>
+              <span class="val">In Progress</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Insured Name</span>
+              <span class="val">t t</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="white-card">
+          <div class="card-title">Rate Indication</div>
+          <div class="grid-2col">
+            <div class="floating-group">
+              <label>Subline *</label>
+              <select class="custom-select" id="page3-subline-select"><option>Package Policy</option></select>
+            </div>
+            <div class="floating-group">
+              <label>State *</label>
+              <select class="custom-select"><option>AL</option></select>
+            </div>
+            
+            <div class="floating-group">
+              <label>State *</label>
+              <select class="custom-select"><option>AK-Premises/Operations and Products/Completed Operations</option></select>
+            </div>
+            <div class="floating-group">
+              <label>Effective Date</label>
+              <div class="icon-input">
+                <input type="text" class="custom-input" value="03/21/2026">
+                <i class="fa-regular fa-calendar" style="position: absolute; right: 12px; top: 18px;"></i>
+              </div>
+            </div>
+            <div class="floating-group">
+              <label>Expiration Date</label>
+              <div class="icon-input">
+                <input type="text" class="custom-input" value="03/21/2027">
+                <i class="fa-regular fa-calendar" style="position: absolute; right: 12px; top: 18px;"></i>
+              </div>
+            </div>
+
+            <div class="floating-group">
+              <label>Billing Type</label>
+              <select class="custom-select"><option>Agency Bill</option></select>
+            </div>
+            <div class="floating-group">
+              <label>Quote Type</label>
+              <select class="custom-select" disabled><option>New Business</option></select>
+            </div>
+          </div>
+        </div>
+
+        <!-- GL SECTION -->
+        <div id="gl-section" style="display: none;">
+          <div class="toggle-row">
+            <div class="toggle-label">General liability</div>
+            <label class="switch">
+              <input type="checkbox" checked id="gl-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div id="gl-content">
+            <div class="section-header">Risk Schedule</div>
+            <div class="table-container">
+              <div class="v-table-header">
+                <div class="v-col">Subline</div>
+                <div class="v-col">State</div>
+                <div class="v-col">Location Number</div>
+              </div>
+              <div class="v-table-body">
+                No Records To Display.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTO SECTION -->
+        <div id="ca-section" style="display: none;">
+          <div class="toggle-row">
+            <div class="toggle-label">Commercial Automobile</div>
+            <label class="switch">
+              <input type="checkbox" checked id="ca-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div id="ca-content">
+            <div class="section-header" style="margin-top: 8px;">Vehicle Schedule</div>
+            <div class="table-container">
+              <div class="v-table-header">
+                <div class="v-col" style="flex:0.5">Unit</div>
+                <div class="v-col" style="flex:1.5">VehicleSubTypes</div>
+                <div class="v-col" style="flex:1">ClassCode</div>
+                <div class="v-col" style="flex:1.5">OriginalClassNew</div>
+                <div class="v-col" style="flex:0.8">State</div>
+                <div class="v-col" style="flex:0.8">City</div>
+                <div class="v-col" style="flex:1">VIN</div>
+                <div class="v-col" style="flex:0.8">Year</div>
+                <div class="v-col" style="flex:1">Make</div>
+                <div class="v-col" style="flex:1">Model</div>
+                <div class="v-col" style="flex:1">Premium</div>
+              </div>
+              <div class="v-table-body">
+                No Records To Display.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 8px;">
+          Taxes and Fees <span class="sub-plus"><i class="fa-solid fa-plus"></i></span>
+        </div>
+        <div class="table-container" style="margin-bottom: 24px;">
+          <div class="v-table-header">
+            <div class="v-col">TAX</div>
+            <div class="v-col">PERCENTAGE</div>
+            <div class="v-col">Amount</div>
+            <div class="v-col">Action</div>
+          </div>
+          <div class="v-table-body">
+            No Records To Display.
+          </div>
+        </div>
+
+        <div class="bottom-actions" style="margin-bottom: 24px;">
+          <button class="btn btn-prev" onclick="window.location.href='page2.html'">Previous</button>
+          <button class="btn btn-next" style="padding: 8px 32px;">Save</button>
+        </div>
+
+      </div>
+      
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const glSelected = localStorage.getItem('selectedGL') === 'true';
+      const caSelected = localStorage.getItem('selectedCA') === 'true';
+      const sublineSelect = document.getElementById('page3-subline-select');
+      const glSection = document.getElementById('gl-section');
+      const caSection = document.getElementById('ca-section');
+      const glToggle = document.getElementById('gl-toggle');
+      const caToggle = document.getElementById('ca-toggle');
+      const glContent = document.getElementById('gl-content');
+      const caContent = document.getElementById('ca-content');
+      
+      if (sublineSelect) {
+        if (glSelected && caSelected) {
+          sublineSelect.innerHTML = '<option>Commercial Package Policy</option>';
+        } else if (caSelected) {
+          sublineSelect.innerHTML = '<option>Commercial Automobile</option>';
+        } else if (glSelected) {
+          sublineSelect.innerHTML = '<option>General Liability</option>';
+        }
+      }
+
+      if (glSelected && glSection) {
+        glSection.style.display = 'block';
+      }
+      if (caSelected && caSection) {
+        caSection.style.display = 'block';
+      }
+
+      if (glToggle && glContent) {
+        glToggle.addEventListener('change', (e) => {
+          glContent.style.display = e.target.checked ? 'block' : 'none';
+        });
+      }
+
+      if (caToggle && caContent) {
+        caToggle.addEventListener('change', (e) => {
+          caContent.style.display = e.target.checked ? 'block' : 'none';
+        });
+      }
+    });
+
+    function toggleDetails() {
+      const panel = document.querySelector('.details-panel');
+      const grid = document.querySelector('.details-grid');
+      const icon = document.getElementById('details-chevron');
+      if (panel && grid && icon) {
+        if (panel.classList.contains('collapsed')) {
+          panel.classList.remove('collapsed');
+          grid.style.display = 'flex';
+          icon.classList.remove('fa-chevron-right');
+          icon.classList.add('fa-chevron-down');
+        } else {
+          panel.classList.add('collapsed');
+          grid.style.display = 'none';
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-right');
+        }
+      }
+    }
+  </script>
+</body>
+</html>
