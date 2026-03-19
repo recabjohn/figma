@@ -12,6 +12,30 @@ const details = {
 };
 
 export function render() {
+  const deductOpts = `<option value="" disabled selected>Select</option>
+      <option>No Deductible</option>
+      <option>250 Per Claim</option>
+      <option>250 Per Occurrence</option>
+      <option>500 Per Claim</option>
+      <option>500 Per Occurrence</option>
+      <option>750 Per Claim</option>
+      <option>750 Per Occurrence</option>
+      <option>1,000 Per Claim</option>
+      <option>1,000 Per Occurrence</option>
+      <option>2,000 Per Claim</option>
+      <option>2,000 Per Occurrence</option>
+      <option>3,000 Per Claim</option>
+      <option>3,000 Per Occurrence</option>
+      <option>4,000 Per Claim</option>
+      <option>4,000 Per Occurrence</option>
+      <option>5,000 Per Claim</option>
+      <option>5,000 Per Occurrence</option>
+      <option>10,000 Per Claim</option>
+      <option>10,000 Per Occurrence</option>
+      <option>15,000 Per Claim</option>
+      <option>15,000 Per Occurrence</option>
+      <option>25,000 Per Claim</option>
+      <option>25,000 Per Occurrence</option>`;
   return `
     <div style="display:flex;flex-direction:column;height:100vh;">
       ${renderHeader({ showTools: true })}
@@ -73,10 +97,56 @@ export function render() {
                     <label id="lbl-state" style="display:none;font-size:11px;color:#5d6773;position:absolute;top:-16px;left:0;">State *</label>
                     <select class="custom-select" id="state-select">
                       <option value="" disabled selected hidden>State *</option>
+                      <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
+                      <option value="AZ">Arizona</option>
+                      <option value="AR">Arkansas</option>
                       <option value="CA">California</option>
+                      <option value="CO">Colorado</option>
+                      <option value="CT">Connecticut</option>
+                      <option value="DE">Delaware</option>
+                      <option value="FL">Florida</option>
+                      <option value="GA">Georgia</option>
+                      <option value="HI">Hawaii</option>
+                      <option value="ID">Idaho</option>
+                      <option value="IL">Illinois</option>
+                      <option value="IN">Indiana</option>
+                      <option value="IA">Iowa</option>
+                      <option value="KS">Kansas</option>
+                      <option value="KY">Kentucky</option>
+                      <option value="LA">Louisiana</option>
+                      <option value="ME">Maine</option>
+                      <option value="MD">Maryland</option>
+                      <option value="MA">Massachusetts</option>
+                      <option value="MI">Michigan</option>
+                      <option value="MN">Minnesota</option>
+                      <option value="MS">Mississippi</option>
+                      <option value="MO">Missouri</option>
+                      <option value="MT">Montana</option>
+                      <option value="NE">Nebraska</option>
+                      <option value="NV">Nevada</option>
+                      <option value="NH">New Hampshire</option>
+                      <option value="NJ">New Jersey</option>
+                      <option value="NM">New Mexico</option>
                       <option value="NY">New York</option>
+                      <option value="NC">North Carolina</option>
+                      <option value="ND">North Dakota</option>
+                      <option value="OH">Ohio</option>
+                      <option value="OK">Oklahoma</option>
+                      <option value="OR">Oregon</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="RI">Rhode Island</option>
+                      <option value="SC">South Carolina</option>
+                      <option value="SD">South Dakota</option>
+                      <option value="TN">Tennessee</option>
                       <option value="TX">Texas</option>
+                      <option value="UT">Utah</option>
+                      <option value="VT">Vermont</option>
+                      <option value="VA">Virginia</option>
+                      <option value="WA">Washington</option>
+                      <option value="WV">West Virginia</option>
+                      <option value="WI">Wisconsin</option>
+                      <option value="WY">Wyoming</option>
                     </select>
                   </div>
                   <div class="form-group" id="subline-group" style="display:none;position:relative;margin-top:28px;">
@@ -95,8 +165,161 @@ export function render() {
                       <option value="10">Electronic Data Liability</option>
                     </select>
                   </div>
-                  <div class="form-actions">
-                    <button class="btn btn-save">Save</button>
+                  <div id="gl-extra-fields" style="display:none;">
+                    <div class="floating-group" style="margin-top:16px;">
+                      <label>Governmental Subdivision *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Limited Product Withdrawal Coverage *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Size Of Risk Rating *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Each Occurrence Limit *</label>
+                      <select class="custom-select">
+                        <option>100,000 CSL</option>
+                        <option>200,000 CSL</option>
+                        <option>300,000 CSL</option>
+                        <option>500,000 CSL</option>
+                        <option selected>1,000,000 CSL</option>
+                        <option>2,000,000 CSL</option>
+                      </select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Medical Payments Exclusion for Entire Policy *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Medical Payments Limit *</label>
+                      <select class="custom-select">
+                        <option>1,000</option>
+                        <option>2,000</option>
+                        <option selected>5,000</option>
+                        <option>10,000</option>
+                        <option>25,000</option>
+                        <option>50,000</option>
+                        <option>100,000</option>
+                      </select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Damage to Premises Rented to You Limit</label>
+                      <select class="custom-select">
+                        <option>50,000</option>
+                        <option selected>100,000</option>
+                        <option>300,000</option>
+                        <option>500,000</option>
+                        <option>1,000,000</option>
+                      </select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Personal and Advertising Injury Limit *</label>
+                      <select class="custom-select">
+                        <option>100,000</option>
+                        <option>300,000</option>
+                        <option>500,000</option>
+                        <option selected>1,000,000</option>
+                        <option>2,000,000</option>
+                      </select>
+                    </div>
+                    <div class="floating-group">
+                      <label>General Aggregate Limit *</label>
+                      <select class="custom-select">
+                        <option>500,000 CSL</option>
+                        <option>1,000,000 CSL</option>
+                        <option selected>2,000,000 CSL</option>
+                        <option>4,000,000 CSL</option>
+                      </select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Products/Completed Operations Aggregate Limit *</label>
+                      <select class="custom-select">
+                        <option>500,000 CSL</option>
+                        <option>1,000,000 CSL</option>
+                        <option selected>2,000,000 CSL</option>
+                        <option>4,000,000 CSL</option>
+                      </select>
+                    </div>
+
+                    <div class="subheader" style="margin-top:20px;margin-bottom:8px;">Deductibles</div>
+                    <div class="floating-group">
+                      <label>Premises/Operations BI Deductible *</label>
+                      <select class="custom-select">${deductOpts}</select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Products/Completed Operations BI Deductible *</label>
+                      <select class="custom-select">${deductOpts}</select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Premises/Operations PD Deductible *</label>
+                      <select class="custom-select">${deductOpts}</select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Products/Completed Operations PD Deductible *</label>
+                      <select class="custom-select">${deductOpts}</select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Premises/Operations BI and PD Deductible *</label>
+                      <select class="custom-select">${deductOpts}</select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Products/Completed Operations BI and PD Deductible *</label>
+                      <select class="custom-select">${deductOpts}</select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Coverage Form *</label>
+                      <select class="custom-select">
+                        <option selected>Occurrence</option>
+                        <option>Claims Made</option>
+                      </select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Legal Entity *</label>
+                      <select class="custom-select">
+                        <option selected>Individual</option>
+                        <option>Corporation</option>
+                        <option>Partnership</option>
+                        <option>LLC</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Limited Coverage For Designated Unmanned Aircraft *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Condominium or Townhouse Association *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+
+                    <div class="subheader" style="margin-top:20px;margin-bottom:8px;">Experience Rating and Schedule Rating</div>
+                    <div class="floating-group">
+                      <label>Experience Rating *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Schedule Rating *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Terrorism Risk Insurance Program (TRIP) terminates before policy expiration date *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Accept Certified Acts of Terrorism Coverage *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Composite Rating Applies *</label>
+                      <select class="custom-select"><option selected>No</option><option>Yes</option></select>
+                    </div>
+
+                    <div class="form-actions">
+                      <button class="btn btn-save">Save</button>
+                    </div>
                   </div>
                 </div>
 
@@ -123,7 +346,54 @@ export function render() {
                       <option value="" disabled selected hidden>State *</option>
                       <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
+                      <option value="AZ">Arizona</option>
+                      <option value="AR">Arkansas</option>
                       <option value="CA">California</option>
+                      <option value="CO">Colorado</option>
+                      <option value="CT">Connecticut</option>
+                      <option value="DE">Delaware</option>
+                      <option value="FL">Florida</option>
+                      <option value="GA">Georgia</option>
+                      <option value="HI">Hawaii</option>
+                      <option value="ID">Idaho</option>
+                      <option value="IL">Illinois</option>
+                      <option value="IN">Indiana</option>
+                      <option value="IA">Iowa</option>
+                      <option value="KS">Kansas</option>
+                      <option value="KY">Kentucky</option>
+                      <option value="LA">Louisiana</option>
+                      <option value="ME">Maine</option>
+                      <option value="MD">Maryland</option>
+                      <option value="MA">Massachusetts</option>
+                      <option value="MI">Michigan</option>
+                      <option value="MN">Minnesota</option>
+                      <option value="MS">Mississippi</option>
+                      <option value="MO">Missouri</option>
+                      <option value="MT">Montana</option>
+                      <option value="NE">Nebraska</option>
+                      <option value="NV">Nevada</option>
+                      <option value="NH">New Hampshire</option>
+                      <option value="NJ">New Jersey</option>
+                      <option value="NM">New Mexico</option>
+                      <option value="NY">New York</option>
+                      <option value="NC">North Carolina</option>
+                      <option value="ND">North Dakota</option>
+                      <option value="OH">Ohio</option>
+                      <option value="OK">Oklahoma</option>
+                      <option value="OR">Oregon</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="RI">Rhode Island</option>
+                      <option value="SC">South Carolina</option>
+                      <option value="SD">South Dakota</option>
+                      <option value="TN">Tennessee</option>
+                      <option value="TX">Texas</option>
+                      <option value="UT">Utah</option>
+                      <option value="VT">Vermont</option>
+                      <option value="VA">Virginia</option>
+                      <option value="WA">Washington</option>
+                      <option value="WV">West Virginia</option>
+                      <option value="WI">Wisconsin</option>
+                      <option value="WY">Wyoming</option>
                     </select>
                     <p id="policy-state-error" style="color:#d9534f;font-size:11px;margin-top:4px;display:none;">State is required.</p>
                   </div>
@@ -392,7 +662,14 @@ export function attach() {
     } else {
       lblState.style.display = 'none';
       sublineGroup.style.display = 'none';
+      document.getElementById('gl-extra-fields').style.display = 'none';
     }
+  });
+
+  const sublineSelect = document.getElementById('subline-select');
+  const glExtraFields = document.getElementById('gl-extra-fields');
+  sublineSelect.addEventListener('change', () => {
+    glExtraFields.style.display = sublineSelect.value ? 'block' : 'none';
   });
 
   // POLICY accordion
