@@ -89,7 +89,14 @@ export function render() {
                 <div class="acc-row" id="state-row">
                   <i class="fa-solid fa-chevron-down acc-icon"></i>
                   STATE
-                  <i class="fa-solid fa-circle-plus plus-icon" id="add-state-btn" style="cursor:pointer;"></i>
+                  <i class="fa-solid fa-circle-plus plus-icon" id="add-state-btn" style="cursor:pointer; color:#1f6bc0;"></i>
+                </div>
+
+                <div id="saved-states-container" style="display:none; padding: 0 24px 24px 64px;">
+                  <div style="font-weight:700; font-size:13px; color:#23282c; display:flex; align-items:center;">
+                    <i class="fa-solid fa-chevron-right" style="margin-right:12px; font-size:12px; color:#5d6773;"></i>
+                    <span id="saved-state-text">NE - PREMISES/OPERATIONS AND PRODUCTS/COMPLETED OPERATIONS (PRIMARY STATE)</span>
+                  </div>
                 </div>
 
                 <div class="state-form-container" id="state-form" style="display:none;">
@@ -152,8 +159,8 @@ export function render() {
                   <div class="form-group" id="subline-group" style="display:none;position:relative;margin-top:28px;">
                     <label style="font-size:11px;color:#5d6773;position:absolute;top:-16px;left:0;">Subline *</label>
                     <select class="custom-select" id="subline-select">
-                      <option value="" disabled selected hidden>Select</option>
-                      <option value="1">Premises/Operations and Products/Completed Operations</option>
+                      <option value="" disabled hidden>Select</option>
+                      <option value="1" selected>Premises/Operations and Products/Completed Operations</option>
                       <option value="2">Premises/Operations</option>
                       <option value="3">Products/Completed Operations</option>
                       <option value="4">Liquor</option>
@@ -181,11 +188,11 @@ export function render() {
                     <div class="floating-group">
                       <label>Each Occurrence Limit *</label>
                       <select class="custom-select">
-                        <option>100,000 CSL</option>
+                        <option selected>100,000 CSL</option>
                         <option>200,000 CSL</option>
                         <option>300,000 CSL</option>
                         <option>500,000 CSL</option>
-                        <option selected>1,000,000 CSL</option>
+                        <option>1,000,000 CSL</option>
                         <option>2,000,000 CSL</option>
                       </select>
                     </div>
@@ -218,40 +225,42 @@ export function render() {
                     <div class="floating-group">
                       <label>Personal and Advertising Injury Limit *</label>
                       <select class="custom-select">
-                        <option>100,000</option>
+                        <option selected>100,000</option>
                         <option>300,000</option>
                         <option>500,000</option>
-                        <option selected>1,000,000</option>
+                        <option>1,000,000</option>
                         <option>2,000,000</option>
                       </select>
                     </div>
                     <div class="floating-group">
                       <label>General Aggregate Limit *</label>
                       <select class="custom-select">
+                        <option selected>200,000 CSL</option>
                         <option>500,000 CSL</option>
                         <option>1,000,000 CSL</option>
-                        <option selected>2,000,000 CSL</option>
+                        <option>2,000,000 CSL</option>
                         <option>4,000,000 CSL</option>
                       </select>
                     </div>
                     <div class="floating-group">
                       <label>Products/Completed Operations Aggregate Limit *</label>
                       <select class="custom-select">
+                        <option selected>200,000 CSL</option>
                         <option>500,000 CSL</option>
                         <option>1,000,000 CSL</option>
-                        <option selected>2,000,000 CSL</option>
+                        <option>2,000,000 CSL</option>
                         <option>4,000,000 CSL</option>
                       </select>
                     </div>
 
-                    <div class="subheader" style="margin-top:20px;margin-bottom:8px;">Deductibles</div>
+                    <div class="subheader" style="margin-top:20px;margin-bottom:24px;">Deductibles</div>
                     <div class="floating-group">
                       <label>Premises/Operations BI Deductible *</label>
-                      <select class="custom-select">${deductOpts}</select>
+                      <select class="custom-select">${deductOpts.replace('<option>No Deductible</option>', '<option selected>No Deductible</option>')}</select>
                     </div>
                     <div class="floating-group">
                       <label>Products/Completed Operations BI Deductible *</label>
-                      <select class="custom-select">${deductOpts}</select>
+                      <select class="custom-select">${deductOpts.replace('<option>1,000 Per Occurrence</option>', '<option selected>1,000 Per Occurrence</option>')}</select>
                     </div>
                     <div class="floating-group">
                       <label>Premises/Operations PD Deductible *</label>
@@ -295,7 +304,7 @@ export function render() {
                       <select class="custom-select"><option selected>No</option><option>Yes</option></select>
                     </div>
 
-                    <div class="subheader" style="margin-top:20px;margin-bottom:8px;">Experience Rating and Schedule Rating</div>
+                    <div class="subheader" style="margin-top:20px;margin-bottom:24px;">Experience Rating and Schedule Rating</div>
                     <div class="floating-group">
                       <label>Experience Rating *</label>
                       <select class="custom-select"><option selected>No</option><option>Yes</option></select>
@@ -318,15 +327,343 @@ export function render() {
                     </div>
 
                     <div class="form-actions">
-                      <button class="btn btn-save">Save</button>
+                      <button class="btn btn-save" id="state-save-btn">Save</button>
                     </div>
                   </div>
                 </div>
 
-                <div class="acc-row" style="border-top:2px solid #f0f3f6;">
-                  <i class="fa-solid fa-chevron-right acc-icon"></i>
+                <div class="acc-row" id="risk-schedule-row" style="border-top:2px solid #f0f3f6; cursor:pointer;">
+                  <i class="fa-solid fa-chevron-right acc-icon" id="risk-schedule-icon"></i>
                   RISK SCHEDULE
                 </div>
+                
+                <div id="risk-schedule-content" style="display:none; padding-bottom: 24px;">
+                  <div class="acc-row" id="location-row" style="padding-left: 48px; font-size: 14px; border-top: 1px solid #f0f3f6; cursor:pointer;">
+                    <i class="fa-solid fa-chevron-down acc-icon" id="location-icon"></i>
+                    LOCATION AND CLASSIFICATION INFORMATION
+                  </div>
+                  <div id="location-content" style="padding: 16px 48px 24px;">
+                    <div style="display:flex; align-items:center; font-size: 20px; color: #5d6773; margin-bottom: 12px; font-weight: 400;">
+                      Location <i class="fa-solid fa-circle-plus" id="add-location-btn" style="margin-left: 8px; cursor: pointer; color: #8ba0b5; font-size: 16px;"></i>
+                    </div>
+                    <div class="vehicle-table-container" style="box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden; border: 1px solid #e1e6eb;">
+                      <div class="v-table-header" style="background-color: #e6f0f9; padding: 12px 16px; font-size: 12px; font-weight: 600; color: #1e3a5f; display: flex;">
+                        <div style="flex:1.5;">Location Number</div>
+                        <div style="flex:2; text-align:center;">State-Subline</div>
+                        <div style="flex:3; text-align:center;">Address</div>
+                        <div style="flex:1.5; text-align:center;">Premium</div>
+                        <div style="flex:1; text-align:center;">Action</div>
+                      </div>
+                      <div class="v-table-body" id="location-empty-state" style="background-color: #fff; padding: 16px; text-align: center; font-size: 12px; font-weight: 700; color: #23282c;">
+                        No Records To Display.
+                      </div>
+                      
+                      <!-- LOCATION FORM -->
+                      <div id="location-add-form" style="display:none; background-color: #fff; padding: 16px;">
+                        <div style="display:flex; justify-content: space-between; align-items: center; color: #5d6773; margin-bottom: 16px;">
+                          <i class="fa-solid fa-chevron-up" style="cursor:pointer;" id="collapse-location-btn"></i>
+                          <i class="fa-solid fa-ellipsis-vertical" style="cursor:pointer;"></i>
+                        </div>
+                        
+                        <div class="input-group" style="position:relative; margin-top:20px; margin-bottom: 24px;">
+                          <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Subline State *</label>
+                          <select class="custom-select" id="loc-subline-state-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c;">
+                            <option value="" id="dynamic-subline-opt"></option>
+                          </select>
+                        </div>
+                        
+                        <div style="font-size:13px; color:#5d6773; margin-bottom: 16px;">Location Number</div>
+                        
+                        <hr style="border:none; border-top:1px solid #7b8f9e; margin-bottom: 24px;">
+                        
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Address Line 1 *</label>
+                            <input type="text" class="custom-input" value="26 Federal Plaza" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+                          
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Address Line 2</label>
+                            <input type="text" class="custom-input" value="" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">City *</label>
+                            <input type="text" class="custom-input" value="New York" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">State *</label>
+                            <input type="text" class="custom-input" value="NY" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">County *</label>
+                            <input type="text" class="custom-input" value="New York County" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Zipcode 1 *</label>
+                            <input type="text" class="custom-input" value="10278" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Zipcode 2</label>
+                            <input type="text" class="custom-input" value="" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+
+                          <div class="input-group" style="position:relative;">
+                            <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Country *</label>
+                            <input type="text" class="custom-input" value="US" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c;">
+                          </div>
+                        </div>
+                        
+                        <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                          <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Zip Code *</label>
+                          <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c;">
+                            <option>35014</option>
+                          </select>
+                        </div>
+                        
+                        <div style="font-weight: 700; font-size: 14px; color: #23282c; margin-bottom: 20px;">Premises/Operations</div>
+                        
+                        <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                          <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">BI Deductible *</label>
+                          <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c;">
+                            <option>No Deductible</option>
+                          </select>
+                        </div>
+
+                        <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                          <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">PD Deductible *</label>
+                          <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c;">
+                            <option>No Deductible</option>
+                          </select>
+                        </div>
+
+                        <div class="input-group" style="position:relative; margin-bottom: 32px;">
+                          <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">BI and PD Deductible *</label>
+                          <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c;">
+                            <option>No Deductible</option>
+                          </select>
+                        </div>
+
+                        <div style="font-weight: 700; font-size: 14px; color: #23282c; margin-bottom: 20px;">Territory</div>
+
+                        <div class="input-group" style="position:relative; margin-bottom: 32px;">
+                          <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Premises/Operations Code *</label>
+                          <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c;">
+                            <option>001</option>
+                          </select>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 16px;">
+                          <button class="btn btn-save" id="location-save-btn" style="background-color: #2b435f; color: #fff; padding: 6px 20px; border-radius: 6px; border: none; font-size: 13px; font-weight: 500; cursor: pointer;">Save</button>
+                        </div>
+
+                        <div id="location-sub-panels" style="display:none; margin-top: 40px; padding-bottom: 24px;">
+                          <!-- Additional Coverages -->
+                          <div style="display:flex; align-items:center; margin-bottom: 16px;">
+                            <h3 style="margin:0; font-size: 18px; font-weight: 700; color: #5d6773;">Additional Coverages</h3>
+                            <i class="fa-solid fa-circle-plus" style="margin-left: 8px; font-size: 18px; color: #9fabb7; cursor: pointer;"></i>
+                          </div>
+                          
+                          <div style="border: 1px solid #e1e6eb; border-radius: 6px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <div style="display:flex; background-color: #eaf1f6; padding: 12px 16px; font-size: 12px; color: #23282c;">
+                              <div style="flex:1;">Coverage</div>
+                              <div style="flex:1; text-align:right;">Action</div>
+                            </div>
+                            <div style="background-color: #fff; padding: 12px 16px; text-align: center; font-size: 12px; font-weight: 700; color: #23282c;">
+                              No Records To Display.
+                            </div>
+                          </div>
+
+                          <!-- Classification -->
+                          <div style="display:flex; align-items:center; margin-bottom: 16px;">
+                            <h3 style="margin:0; font-size: 18px; font-weight: 700; color: #5d6773;">Classification</h3>
+                            <i class="fa-solid fa-circle-plus" id="add-class-btn" style="margin-left: 8px; font-size: 18px; color: #9fabb7; cursor: pointer;"></i>
+                          </div>
+
+                          <div style="border: 1px solid #e1e6eb; border-radius: 6px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            <div style="display:flex; background-color: #eaf1f6; padding: 12px 16px; font-size: 12px; color: #23282c;">
+                              <div style="flex:1.5;">Location Number</div>
+                              <div style="flex:2; text-align:center;">Classification Number</div>
+                              <div style="flex:2; text-align:center;">Class Description</div>
+                              <div style="flex:1.5; text-align:center;">Class Code</div>
+                              <div style="flex:1.5; text-align:center;">Premium</div>
+                              <div style="flex:1; text-align:right;">Action</div>
+                            </div>
+                            
+                            <!-- Empty Form -->
+                            <div id="class-empty-state" style="background-color: #fff; padding: 12px 16px; text-align: center; font-size: 12px; font-weight: 700; color: #23282c;">
+                              No Records To Display.
+                            </div>
+
+                            <!-- Populated Row -->
+                            <div id="class-populated-row" style="display:none; background-color: #fff; border-bottom: 1px solid #e1e6eb;">
+                              <div style="display: flex; padding: 12px 16px; align-items: center; font-size: 12px; color: #23282c;">
+                                <div style="flex:1.5; display:flex; align-items:center;">
+                                  <i class="fa-solid fa-chevron-down" style="margin-right: 12px; color: #5d6773; cursor:pointer;"></i> 1
+                                </div>
+                                <div style="flex:2; text-align:center; color:#23282c;">1</div>
+                                <div style="flex:2; text-align:center; color:#23282c;">Abrasive Wheel Mfg.</div>
+                                <div style="flex:1.5; text-align:center; color:#23282c;">50010</div>
+                                <div style="flex:1.5; text-align:center;"></div>
+                                <div style="flex:1; text-align:right; font-size:16px; color:#5d6773; cursor:pointer;">&#8942;</div>
+                              </div>
+                            </div>
+                            
+                            <!-- Add Form -->
+                            <div id="class-add-form" style="display:none; background-color: #fff; padding: 16px;">
+                              <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+                                <i class="fa-solid fa-chevron-up" style="color: #5d6773; cursor:pointer;" id="collapse-class-btn"></i>
+                                <i class="fa-solid fa-ellipsis-vertical" style="color: #5d6773; cursor:pointer;"></i>
+                              </div>
+                              
+                              <div style="margin-bottom: 32px; font-size: 13px; color: #5d6773; display: flex;">
+                                <span style="width: 250px;">Location Number</span>
+                                <span style="color:#23282c;">1</span>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Classification Number *</label>
+                                <input type="text" class="custom-input" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c; outline:none;">
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Product Coverage Only</label>
+                                <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c; outline:none;">
+                                  <option selected>No</option>
+                                  <option>Yes</option>
+                                </select>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Class Code *</label>
+                                <input type="text" list="class-codes" class="custom-input" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c; outline:none;">
+                                <datalist id="class-codes">
+                                  <option value="50010 - Abrasive Wheel Mfg."></option>
+                                  <option value="50017 - Abrasives or Abrasive Products Mfg."></option>
+                                  <option value="50015 - Abrasives or Abrasive Products Mfg. - artificial"></option>
+                                  <option value="91111 - AC Systems or Equipment-dealers or distributor and installtn,servicing or repair"></option>
+                                  <option value="50045 - Adhesive Mfg."></option>
+                                  <option value="50047 - Adhesive Tape Mfg."></option>
+                                  <option value="40005 - Adult Day Care - Not-For-Profit only"></option>
+                                  <option value="40006 - Adult Day Care - Other than Not-For-Profit"></option>
+                                  <option value="90089 - Advertising Sign Companies - outdoor"></option>
+                                </datalist>
+                              </div>
+                              
+                              <div style="color: #5d6773; font-size: 12px; line-height: 2.5; margin-bottom: 24px;">
+                                <div>Liquor Premium</div>
+                                <div>Owners and Contractors Premium</div>
+                                <div>Railroad Premium</div>
+                                <div>Classification Type</div>
+                              </div>
+
+                              <div style="font-weight: 700; font-size: 14px; color: #23282c; margin-bottom: 16px;">Premises/Operations</div>
+                              
+                              <div style="color: #5d6773; font-size: 12px; margin-bottom: 16px;">Premium</div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Coverage *</label>
+                                <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c; outline:none;">
+                                  <option>Premises/Operations</option>
+                                </select>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">BI Deductible *</label>
+                                <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c; outline:none;">
+                                  <option>No Deductible</option>
+                                </select>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">PD Deductible *</label>
+                                <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c; outline:none;">
+                                  <option>No Deductible</option>
+                                </select>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">BI and PD Deductible *</label>
+                                <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c; outline:none;">
+                                  <option>No Deductible</option>
+                                </select>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Premium Basis</label>
+                                <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c; outline:none;">
+                                  <option>Gross Sales</option>
+                                </select>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 24px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">'If Any' Basis *</label>
+                                <select class="custom-select" style="width:100%; border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; color:#23282c; outline:none;">
+                                  <option selected>No</option>
+                                  <option>Yes</option>
+                                </select>
+                              </div>
+
+                              <div class="input-group" style="position:relative; margin-bottom: 32px;">
+                                <label style="position:absolute; top:-8px; left:10px; background:#fff; padding:0 4px; font-size:11px; color:#5d6773; z-index:5;">Exposure *</label>
+                                <input type="text" class="custom-input" value="0" style="border:1px solid #ccc; border-radius:6px; height:36px; padding:0 12px; width:100%; color:#23282c; outline:none;">
+                              </div>
+
+                              <div style="display: flex; justify-content: flex-end;">
+                                <button class="btn btn-save" id="class-save-btn" style="background-color: #2b435f; color: #fff; padding: 6px 20px; border-radius: 6px; border: none; font-size: 13px; font-weight: 500; cursor: pointer;">Save</button>
+                              </div>
+                            </div>
+                            
+                            <!-- Pagination inside Classification table -->
+                            <div style="display: flex; justify-content: flex-end; align-items: center; font-size: 12px; color: #5d6773; padding: 12px 16px; background-color: #fff; border-top: 1px solid #e1e6eb;">
+                              <span style="margin-right: 16px;">Rows per page: <select style="border:none; background:transparent; font-size:12px; color:#23282c; cursor:pointer;"><option>5</option></select></span>
+                              <span style="margin-right: 16px;">1-1 of 1</span>
+                              <i class="fa-solid fa-chevron-left" style="margin-right: 16px; color:#ccc; cursor:not-allowed;"></i>
+                              <i class="fa-solid fa-chevron-right" style="color:#ccc; cursor:not-allowed;"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <hr style="border:none; border-top:1px solid #e1e6eb; margin: 0 -16px 12px -16px;">
+                        
+                        <div style="display: flex; justify-content: flex-end; align-items: center; font-size: 12px; color: #5d6773;">
+                          <span style="margin-right: 16px;">Rows per page: <select style="border:none; background:transparent; font-size:12px; color:#23282c; cursor:pointer;"><option>5</option></select></span>
+                          <span style="margin-right: 16px;">1-1 of 1</span>
+                          <i class="fa-solid fa-chevron-left" style="margin-right: 16px; color:#ccc; cursor:not-allowed;"></i>
+                          <i class="fa-solid fa-chevron-right" style="color:#23282c; cursor:pointer;"></i>
+                        </div>
+                      </div>
+
+                      <!-- POPULATED STATE -->
+                      <div class="v-table-body" id="location-populated-state" style="display:none; background-color: #fff;">
+                        <div style="display: flex; padding: 12px 16px; border-bottom: 1px solid #e1e6eb; align-items: center; font-size: 12px; color: #23282c;">
+                          <div style="flex:1.5; display:flex; align-items:center;">
+                            <i class="fa-solid fa-chevron-down" style="margin-right: 12px; color: #5d6773; cursor:pointer;"></i> 1
+                          </div>
+                          <div style="flex:2; text-align:center;">NE - Premises/Operations and Products/Completed Operations</div>
+                          <div style="flex:3; text-align:center;">NE, MD 12345, USA</div>
+                          <div style="flex:1.5; text-align:center;">$ 386.00</div>
+                          <div style="flex:1; text-align:center; font-size:16px; color:#5d6773; cursor:pointer;">&#8942;</div>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; align-items: center; font-size: 12px; color: #5d6773; padding: 12px 16px;">
+                          <span style="margin-right: 16px;">Rows per page: <select style="border:none; background:transparent; font-size:12px; color:#23282c; cursor:pointer;"><option>5</option></select></span>
+                          <span style="margin-right: 16px;">1-1 of 1</span>
+                          <i class="fa-solid fa-chevron-left" style="margin-right: 16px; color:#ccc; cursor:not-allowed;"></i>
+                          <i class="fa-solid fa-chevron-right" style="color:#ccc; cursor:not-allowed;"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bottom-actions">
+                <button class="btn btn-next" id="nextBtn">Next</button>
               </div>
             </div>
 
@@ -337,6 +674,16 @@ export function render() {
                   <i class="fa-solid fa-chevron-down acc-icon"></i>
                   POLICY
                   <i class="fa-solid fa-circle-plus plus-icon" id="add-policy-btn" style="cursor:pointer;"></i>
+                </div>
+
+                <div class="saved-policy-container" id="policy-saved-state" style="display:none;">
+                  <div class="saved-policy-row">
+                    <div class="saved-policy-left">
+                      <i class="fa-solid fa-chevron-right"></i>
+                      <span>AL-ALABAMA</span>
+                    </div>
+                    <i class="fa-solid fa-trash-can saved-policy-delete"></i>
+                  </div>
                 </div>
 
                 <div class="state-form-container" id="policy-form-container" style="display:none;padding-bottom:24px;">
@@ -443,6 +790,8 @@ export function render() {
                         <label class="radio-option"><input type="radio" name="terr" class="custom-radio"> Yes</label>
                       </div>
                     </div>
+                    
+                    <div style="font-size:11px;color:#5d6773;margin-bottom:4px;">Liability Deductible</div>
                     <div class="floating-group">
                       <label>Liability Deductible *</label>
                       <select class="custom-select"><option>No Deductible</option></select>
@@ -454,13 +803,16 @@ export function render() {
 
                     <div class="subheader">Uninsured Motorists Coverage</div>
                     <div class="floating-group">
-                      <select class="custom-select"><option disabled selected hidden>Uninsured Motorists Coverage Type *</option></select>
+                      <label>Uninsured Motorists Coverage Type *</label>
+                      <select class="custom-select"><option>Combined Single Limit</option></select>
                     </div>
                     <div class="floating-group">
-                      <select class="custom-select"><option disabled selected hidden>Uninsured Motorists Coverage Combined Single Limit *</option></select>
+                      <label>Uninsured Motorists Coverage Combined Single Limit *</label>
+                      <select class="custom-select"><option>500,000</option></select>
                     </div>
                     <div class="floating-group">
-                      <select class="custom-select"><option disabled selected hidden>Uninsured Motorists Coverage Split Limit *</option></select>
+                      <label>Uninsured Motorists Coverage Split Limit *</label>
+                      <select class="custom-select"><option>Not Applicable</option></select>
                     </div>
 
                     <div class="radio-row">
@@ -473,6 +825,7 @@ export function render() {
                         <label class="radio-option"><input type="radio" name="gross" class="custom-radio"> Yes</label>
                       </div>
                     </div>
+                    <div style="font-size:11px;color:#5d6773;margin-bottom:12px;">Liability Coverage Premium</div>
                     <div class="radio-row">
                       <div class="radio-labels">
                         <div>Experience Rating</div>
@@ -527,6 +880,31 @@ export function render() {
                       </div>
                     </div>
 
+                    <div class="subheader">Truckers Liability Coverage</div>
+                    <div class="floating-group">
+                      <label>Liability Coverage Type *</label>
+                      <select class="custom-select"><option>Combined Single Limit</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <p style="font-size:11px;color:#5d6773;margin-bottom:4px;">Truckers Premium</p>
+                      <label>Liability Limit *</label>
+                      <select class="custom-select"><option>500,000</option></select>
+                    </div>
+                    <div style="font-size:11px;color:#5d6773;margin-bottom:12px;">Liability Deductible</div>
+                    <div class="floating-group">
+                      <p style="font-size:11px;color:#5d6773;margin-bottom:4px;">Average Vehicle Premium</p>
+                      <label>Manual Premium</label>
+                      <input type="text" class="custom-input" value="0">
+                    </div>
+                    <div class="floating-group">
+                      <label>Cost Of Hire - Truckers - Insured Providing Primary *</label>
+                      <input type="text" class="custom-input" value="0">
+                    </div>
+                    <div class="floating-group">
+                      <label>Cost Of Hire - Truckers - Insured Providing Excess *</label>
+                      <input type="text" class="custom-input" value="0">
+                    </div>
+
                     <div class="subheader">Physical Damage Coverages</div>
                     <div class="floating-group">
                       <label>Other Than Collision Coverage Type *</label>
@@ -546,25 +924,58 @@ export function render() {
                       <label>Deductible *</label>
                       <select class="custom-select"><option>Not Applicable</option></select>
                     </div>
+                    
                     <div class="floating-group">
+                      <label>Zip Code</label>
                       <input type="text" class="custom-input" placeholder="Zip Code">
                     </div>
                     <div class="floating-group">
-                      <select class="custom-select"><option disabled selected hidden>Non-Ownership Risk Type *</option></select>
+                      <label>Non-Ownership Risk Type *</label>
+                      <select class="custom-select"><option value=""></option></select>
                     </div>
                     <div class="floating-group">
                       <label>Number Of Employees *</label>
                       <input type="text" class="custom-input" value="0">
                     </div>
                     <div class="floating-group">
+                      <label>Garaging Location</label>
                       <input type="text" class="custom-input" placeholder="Garaging Location">
                     </div>
                     <div class="floating-group">
-                      <select class="custom-select"><option disabled selected hidden>Zip Code *</option></select>
+                      <label>Zip Code *</label>
+                      <select class="custom-select"><option>35010</option></select>
                     </div>
                     <div class="floating-group">
-                      <select class="custom-select"><option disabled selected hidden>Territory *</option></select>
+                      <label>Territory *</label>
+                      <select class="custom-select"><option>129</option></select>
                     </div>
+                    
+                    <div class="floating-group">
+                      <label>Liability Coverage Type *</label>
+                      <select class="custom-select"><option>Combined Single Limit</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Liability Limit *</label>
+                      <select class="custom-select"><option>500,000</option></select>
+                    </div>
+                    <div class="floating-group">
+                      <label>Number Of Volunteers *</label>
+                      <input type="text" class="custom-input" value="0">
+                    </div>
+                    <div class="floating-group">
+                      <label>Number Of Partners *</label>
+                      <input type="text" class="custom-input" value="0">
+                    </div>
+                    <div class="floating-group">
+                      <label>Extended Coverage For Volunteers *</label>
+                      <select class="custom-select"><option>No</option></select>
+                    </div>
+                    <div style="font-size:11px;color:#5d6773;margin-bottom:12px;">Premium</div>
+                    <div class="floating-group">
+                      <label>Extended Coverage For Partners *</label>
+                      <select class="custom-select"><option>No</option></select>
+                    </div>
+                    <div style="font-size:11px;color:#5d6773;margin-bottom:12px;">Premium</div>
                   </div>
 
                   <div class="form-actions" style="margin-top:24px;">
@@ -572,10 +983,34 @@ export function render() {
                   </div>
                 </div>
 
-                <div class="acc-row" style="padding-bottom:24px;border-top:2px solid #f0f3f6;border-bottom:none;">
+                <div class="acc-row" id="vehicle-row" style="padding-bottom:24px;border-top:2px solid #f0f3f6;border-bottom:none;">
                   <i class="fa-solid fa-chevron-down acc-icon"></i>
                   VEHICLE
-                  <i class="fa-solid fa-circle-plus plus-icon" style="cursor:pointer;"></i>
+                  <i class="fa-solid fa-circle-plus plus-icon" id="add-vehicle-btn" style="cursor:pointer;"></i>
+                </div>
+
+                <div class="state-form-container" id="vehicle-form-container" style="display:none;padding-bottom:32px;">
+                  <div style="font-size:12px;color:#8c97a3;margin-bottom:8px;border-bottom:1px solid #d1d9df;padding-bottom:4px;width:100%;max-width:48%;">
+                    Solartis Garaging Location Lookup
+                  </div>
+                  <div class="grid-2col" style="margin-top:24px;">
+                    <div class="floating-group">
+                      <input type="text" class="custom-input" placeholder="Address Line 1">
+                    </div>
+                    <div class="floating-group">
+                      <input type="text" class="custom-input" placeholder="Address Line 2">
+                    </div>
+                    <div class="floating-group icon-input">
+                      <input type="text" class="custom-input" placeholder="Class Code *">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="floating-group">
+                      <input type="text" class="custom-input" placeholder="Solartis Vehicle Type *">
+                    </div>
+                  </div>
+                  <div class="form-actions" style="margin-top:24px;">
+                    <button class="btn btn-save" id="vehicle-save-btn">Save</button>
+                  </div>
                 </div>
 
                 <div class="vehicle-table-container">
@@ -594,12 +1029,12 @@ export function render() {
                   <div class="v-table-body">No Records To Display.</div>
                 </div>
               </div>
-            </div>
 
-            <!-- BOTTOM BUTTONS -->
-            <div class="bottom-actions">
-              <button class="btn btn-prev" id="prevBtn2">Previous</button>
-              <button class="btn btn-next" id="nextBtn2">Next</button>
+              <!-- BOTTOM BUTTONS -->
+              <div class="bottom-actions" style="margin-top:24px;">
+                <button class="btn btn-prev" id="prevBtn2">Previous</button>
+                <button class="btn btn-next" id="nextBtn2">Next</button>
+              </div>
             </div>
 
           </div>
@@ -642,18 +1077,149 @@ export function attach() {
   const lblState = document.getElementById('lbl-state');
   const sublineGroup = document.getElementById('subline-group');
 
+  const savedStatesContainer = document.getElementById('saved-states-container');
+  const stateSaveBtn = document.getElementById('state-save-btn');
+
   addStateBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (stateForm.style.display === 'none') {
       stateForm.style.display = 'block';
       stateRow.style.paddingBottom = '20px';
       stateRow.style.borderBottom = 'none';
+      if (savedStatesContainer) savedStatesContainer.style.display = 'none';
     } else {
       stateForm.style.display = 'none';
-      stateRow.style.paddingBottom = '40px';
-      stateRow.style.borderBottom = '2px solid #f0f3f6';
+      if (document.getElementById('saved-state-text') && document.getElementById('saved-state-text').innerText) {
+        if (savedStatesContainer) savedStatesContainer.style.display = 'block';
+        stateRow.style.paddingBottom = '16px';
+        stateRow.style.borderBottom = 'none';
+      } else {
+        stateRow.style.paddingBottom = '40px';
+        stateRow.style.borderBottom = '2px solid #f0f3f6';
+      }
     }
   });
+
+  if (stateSaveBtn) {
+    stateSaveBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      stateForm.style.display = 'none';
+      if (savedStatesContainer) savedStatesContainer.style.display = 'block';
+      stateRow.style.paddingBottom = '16px';
+      stateRow.style.borderBottom = 'none';
+    });
+  }
+
+  // RISK SCHEDULE logic
+  const riskScheduleRow = document.getElementById('risk-schedule-row');
+  const riskScheduleIcon = document.getElementById('risk-schedule-icon');
+  const riskScheduleContent = document.getElementById('risk-schedule-content');
+
+  if (riskScheduleRow) {
+    riskScheduleRow.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (riskScheduleContent.style.display === 'none') {
+        riskScheduleContent.style.display = 'block';
+        if (riskScheduleIcon) {
+          riskScheduleIcon.classList.remove('fa-chevron-right');
+          riskScheduleIcon.classList.add('fa-chevron-down');
+        }
+      } else {
+        riskScheduleContent.style.display = 'none';
+        if (riskScheduleIcon) {
+          riskScheduleIcon.classList.remove('fa-chevron-down');
+          riskScheduleIcon.classList.add('fa-chevron-right');
+        }
+      }
+    });
+  }
+
+  // LOCATION AND CLASSIFICATION ROW LOGIC
+  const locationRow = document.getElementById('location-row');
+  const locationIcon = document.getElementById('location-icon');
+  const locationContent = document.getElementById('location-content');
+
+  if (locationRow) {
+    locationRow.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (locationContent.style.display === 'none') {
+        locationContent.style.display = 'block';
+        if (locationIcon) {
+          locationIcon.classList.remove('fa-chevron-right');
+          locationIcon.classList.add('fa-chevron-down');
+        }
+      } else {
+        locationContent.style.display = 'none';
+        if (locationIcon) {
+          locationIcon.classList.remove('fa-chevron-down');
+          locationIcon.classList.add('fa-chevron-right');
+        }
+      }
+    });
+  }
+
+  // LOCATION FORM LOGIC
+  const addLocationBtn = document.getElementById('add-location-btn');
+  const locationEmptyState = document.getElementById('location-empty-state');
+  const locationAddForm = document.getElementById('location-add-form');
+  const collapseLocationBtn = document.getElementById('collapse-location-btn');
+  const dynamicSublineOpt = document.getElementById('dynamic-subline-opt');
+  const locSublineStateSelect = document.getElementById('loc-subline-state-select');
+
+  if (addLocationBtn) {
+    addLocationBtn.addEventListener('click', () => {
+      // Auto fetch subline state based on GL state form above
+      const glStateSelect = document.getElementById('state-select');
+      const glSublineSelect = document.getElementById('subline-select');
+      
+      let stateName = glStateSelect && glStateSelect.value ? glStateSelect.value : 'AL';
+      let sublineText = 'Premises/Operations';
+      
+      if (glSublineSelect && glSublineSelect.value) {
+        // Find selected text, but fallback to Premises/Operations just for mock
+        const selectedOpt = glSublineSelect.options[glSublineSelect.selectedIndex];
+        if (selectedOpt && selectedOpt.text !== 'Select') {
+          sublineText = selectedOpt.text;
+        }
+      }
+      
+      const combinedText = `${stateName} - ${sublineText}`;
+      
+      if (dynamicSublineOpt) {
+        dynamicSublineOpt.textContent = combinedText;
+        dynamicSublineOpt.value = combinedText;
+        locSublineStateSelect.value = combinedText;
+      }
+      
+      locationEmptyState.style.display = 'none';
+      locationAddForm.style.display = 'block';
+    });
+  }
+
+  if (collapseLocationBtn) {
+    collapseLocationBtn.addEventListener('click', () => {
+      locationAddForm.style.display = 'none';
+      const subPanels = document.getElementById('location-sub-panels');
+      if (subPanels && subPanels.style.display === 'block') {
+         if (locationPopulatedState) locationPopulatedState.style.display = 'block';
+         locationEmptyState.style.display = 'none';
+      } else {
+         locationEmptyState.style.display = 'block';
+         if (locationPopulatedState) locationPopulatedState.style.display = 'none';
+      }
+    });
+  }
+
+  const locationSaveBtn = document.getElementById('location-save-btn');
+  const locationPopulatedState = document.getElementById('location-populated-state');
+
+  if (locationSaveBtn) {
+    locationSaveBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const subPanels = document.getElementById('location-sub-panels');
+      if (subPanels) subPanels.style.display = 'block';
+    });
+  }
 
   stateSelect.addEventListener('change', () => {
     if (stateSelect.value) {
@@ -684,6 +1250,9 @@ export function attach() {
 
   addPolicyBtn.addEventListener('click', (e) => {
     e.stopPropagation();
+    const policySavedState = document.getElementById('policy-saved-state');
+    if (policySavedState) policySavedState.style.display = 'none';
+
     if (policyFormContainer.style.display === 'none') {
       policyFormContainer.style.display = 'block';
       policyRow.style.paddingBottom = '20px';
@@ -694,6 +1263,42 @@ export function attach() {
       policyRow.style.borderBottom = '2px solid #f0f3f6';
     }
   });
+
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('saved-policy-delete')) {
+       const ps = document.getElementById('policy-saved-state');
+       if (ps) ps.style.display = 'none';
+       policyRow.style.paddingBottom = '40px';
+       policyRow.style.borderBottom = '2px solid #f0f3f6';
+    }
+  });
+
+  // VEHICLE accordion
+  const addVehicleBtn = document.getElementById('add-vehicle-btn');
+  const vehicleFormContainer = document.getElementById('vehicle-form-container');
+  const vehicleSaveBtn = document.getElementById('vehicle-save-btn');
+
+  if (addVehicleBtn && vehicleFormContainer) {
+    addVehicleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = vehicleFormContainer.style.display === 'none';
+      vehicleFormContainer.style.display = isHidden ? 'block' : 'none';
+      
+      const vehicleRow = document.getElementById('vehicle-row');
+      if (vehicleRow) {
+        vehicleRow.style.borderBottom = isHidden ? 'none' : 'none'; 
+        vehicleRow.style.paddingBottom = isHidden ? '20px' : '24px';
+      }
+    });
+
+    if (vehicleSaveBtn) {
+      vehicleSaveBtn.addEventListener('click', () => {
+        vehicleFormContainer.style.display = 'none';
+        const vehicleRow = document.getElementById('vehicle-row');
+        if (vehicleRow) vehicleRow.style.paddingBottom = '24px';
+      });
+    }
+  }
 
   policyStateSelect.addEventListener('change', () => {
     if (policyStateSelect.value) {
@@ -709,12 +1314,85 @@ export function attach() {
   policySaveBtn.addEventListener('click', () => {
     if (!policyStateSelect.value) {
       policyStateError.style.display = 'block';
+    } else {
+      policyFormContainer.style.display = 'none';
+      const policySavedState = document.getElementById('policy-saved-state');
+      if (policySavedState) policySavedState.style.display = 'block';
+      policyRow.style.borderBottom = 'none';
+      policyRow.style.paddingBottom = '16px';
     }
   });
 
   // Navigation
-  document.getElementById('prevBtn2').addEventListener('click', () => navigate('view1'));
-  document.getElementById('nextBtn2').addEventListener('click', () => navigate('view3'));
+  document.getElementById('prevBtn2').addEventListener('click', () => {
+    const tabCa = document.getElementById('tab-ca');
+    const tabGl = document.getElementById('tab-gl');
+    const contentGl = document.getElementById('content-gl');
+    const contentCa = document.getElementById('content-ca');
+    
+    // If CA tab is active, go back to GL tab
+    if (tabCa && tabCa.classList.contains('active')) {
+      tabCa.classList.remove('active');
+      tabGl.classList.add('active');
+      contentCa.style.display = 'none';
+      contentGl.style.display = 'block';
+      window.scrollTo(0, 0);
+    } else {
+      // Otherwise navigate to previous view
+      navigate('view1');
+    }
+  });
+
+  document.getElementById('nextBtn2').addEventListener('click', () => {
+    const tabCa = document.getElementById('tab-ca');
+    const tabGl = document.getElementById('tab-gl');
+    const contentGl = document.getElementById('content-gl');
+    const contentCa = document.getElementById('content-ca');
+    
+    // If GL tab is active, go next to CA tab
+    if (tabGl && tabGl.classList.contains('active')) {
+      tabGl.classList.remove('active');
+      tabCa.classList.add('active');
+      contentGl.style.display = 'none';
+      contentCa.style.display = 'block';
+      window.scrollTo(0, 0);
+    } else {
+      // Otherwise navigate to next view
+      navigate('view3');
+    }
+  });
+
+  const addClassBtn = document.getElementById('add-class-btn');
+  const classEmptyState = document.getElementById('class-empty-state');
+  const classAddForm = document.getElementById('class-add-form');
+  const collapseClassBtn = document.getElementById('collapse-class-btn');
+  const classSaveBtn = document.getElementById('class-save-btn');
+  const classPopulatedRow = document.getElementById('class-populated-row');
+
+  if (addClassBtn) {
+    addClassBtn.addEventListener('click', () => {
+      if (classEmptyState) classEmptyState.style.display = 'none';
+      if (classPopulatedRow) classPopulatedRow.style.display = 'none';
+      if (classAddForm) classAddForm.style.display = 'block';
+    });
+  }
+
+  if (collapseClassBtn) {
+    collapseClassBtn.addEventListener('click', () => {
+      if (classAddForm) classAddForm.style.display = 'none';
+      if (classEmptyState) classEmptyState.style.display = 'block';
+      if (classPopulatedRow) classPopulatedRow.style.display = 'none';
+    });
+  }
+
+  if (classSaveBtn) {
+    classSaveBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (classAddForm) classAddForm.style.display = 'none';
+      if (classEmptyState) classEmptyState.style.display = 'none';
+      if (classPopulatedRow) classPopulatedRow.style.display = 'block';
+    });
+  }
 
   attachDetailsToggle();
 }

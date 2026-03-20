@@ -105,7 +105,7 @@ body {
   justify-content: center;
   color: #ffffff;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 .side-icon.active {
@@ -139,7 +139,7 @@ body {
 .stepper-card {
   background-color: #ffffff;
   padding: 16px 24px;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
@@ -176,8 +176,8 @@ body {
   border-bottom: 1px solid var(--border-color);
   border-left: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   width: fit-content;
   margin-top: -1px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
@@ -209,7 +209,7 @@ body {
    =========================== */
 .details-panel {
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--border-color);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   display: flex;
@@ -228,7 +228,7 @@ body {
   padding: 10px 16px;
   font-size: 13px;
   font-weight: 700;
-  border-radius: 4px 4px 0 0;
+  border-radius: 6px 4px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -237,7 +237,7 @@ body {
   gap: 16px;
 }
 .details-panel.collapsed .details-header {
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 8px 16px;
 }
 .details-grid {
@@ -266,7 +266,7 @@ body {
    =========================== */
 .program-info {
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--border-color);
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -301,7 +301,7 @@ body {
   width: 16px;
   height: 16px;
   border: 2px solid #a4afb7;
-  border-radius: 2px;
+  border-radius: 6px;
   background-color: #ffffff;
   position: relative;
   outline: none;
@@ -328,7 +328,7 @@ body {
    =========================== */
 .accordion-card {
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--border-color);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   margin-bottom: auto;
@@ -370,7 +370,7 @@ body {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 13px;
   color: #555;
   outline: none;
@@ -388,7 +388,7 @@ body {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 13px;
   color: #333;
   outline: none;
@@ -403,7 +403,7 @@ body {
   color: #ffffff;
   padding: 8px 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -461,9 +461,8 @@ body {
 .floating-group label {
   font-size: 11px;
   color: #5d6773;
-  position: absolute;
-  top: -16px;
-  left: 0;
+  display: block;
+  margin-bottom: 4px;
 }
 .subheader {
   font-size: 14px;
@@ -474,7 +473,7 @@ body {
 }
 .inner-card {
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 24px;
   margin-bottom: 24px;
   background-color: #fdfdfd;
@@ -535,7 +534,7 @@ body {
   padding: 16px;
   text-align: center;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 400;
   color: #111;
   background-color: #ffffff;
 }
@@ -545,7 +544,7 @@ body {
    =========================== */
 .white-card {
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--border-color);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   padding: 24px;
@@ -652,7 +651,7 @@ input:checked + .slider:before {
 .btn {
   border: none;
   padding: 8px 24px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -681,4 +680,41 @@ input:checked + .slider:before {
 .footer .brand {
   color: var(--light-blue);
   font-weight: 500;
+}
+
+/* ===========================
+   SAVED POLICY (Commercial Auto)
+   =========================== */
+.saved-policy-container {
+  padding: 0 24px 16px 48px;
+}
+.saved-policy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 6px;
+}
+.saved-policy-row:hover {
+  background-color: #f0f3f6;
+}
+.saved-policy-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #22374c;
+}
+.saved-policy-left i {
+  font-size: 10px;
+  color: #5d6773;
+}
+.saved-policy-delete {
+  color: #0056b3;
+  cursor: pointer;
+  font-size: 16px;
 }

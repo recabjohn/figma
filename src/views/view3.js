@@ -106,11 +106,23 @@ export function render() {
                 <div class="section-header">Risk Schedule</div>
                 <div class="table-container">
                   <div class="v-table-header">
-                    <div class="v-col">Subline</div>
-                    <div class="v-col">State</div>
-                    <div class="v-col">Location Number</div>
+                    <div class="v-col" style="flex:4; text-align:left;">Subline</div>
+                    <div class="v-col" style="flex:1; text-align:center;">State</div>
+                    <div class="v-col" style="flex:1; text-align:right;">Location Number</div>
                   </div>
-                  <div class="v-table-body">No Records To Display.</div>
+                  <div class="v-table-body" style="padding:0;">
+                    <div style="display: flex; padding: 12px 16px; border-bottom: 1px solid #e1e6eb; align-items: center; font-size: 12px; color: #23282c;">
+                      <div style="flex:4; text-align:left;">Premises/Operations and Products/Completed Operations</div>
+                      <div style="flex:1; text-align:center;">CT</div>
+                      <div style="flex:1; text-align:right;">1</div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; align-items: center; font-size: 11px; color: #5d6773; padding: 12px 16px;">
+                      <span style="margin-right: 16px;">Rows per page: <select style="border:none; background:transparent; font-size:11px; color:#23282c; cursor:pointer;"><option>5</option></select></span>
+                      <span style="margin-right: 16px;">1-1 of 1</span>
+                      <i class="fa-solid fa-chevron-left" style="margin-right: 16px; color:#ccc; cursor:not-allowed;"></i>
+                      <i class="fa-solid fa-chevron-right" style="color:#ccc; cursor:not-allowed;"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -128,19 +140,39 @@ export function render() {
                 <div class="section-header" style="margin-top:8px;">Vehicle Schedule</div>
                 <div class="table-container">
                   <div class="v-table-header">
-                    <div class="v-col" style="flex:0.5">Unit</div>
-                    <div class="v-col" style="flex:1.5">VehicleSubTypes</div>
-                    <div class="v-col" style="flex:1">ClassCode</div>
-                    <div class="v-col" style="flex:1.5">OriginalClassNew</div>
-                    <div class="v-col" style="flex:0.8">State</div>
-                    <div class="v-col" style="flex:0.8">City</div>
-                    <div class="v-col" style="flex:1">VIN</div>
-                    <div class="v-col" style="flex:0.8">Year</div>
-                    <div class="v-col" style="flex:1">Make</div>
-                    <div class="v-col" style="flex:1">Model</div>
-                    <div class="v-col" style="flex:1">Premium</div>
+                    <div class="v-col" style="flex:0.8; text-align:center;">Unit</div>
+                    <div class="v-col" style="flex:1.5; text-align:center;">VehicleSubTypes</div>
+                    <div class="v-col" style="flex:1.2; text-align:center;">ClassCode</div>
+                    <div class="v-col" style="flex:1.8; text-align:center;">OriginalClassNew</div>
+                    <div class="v-col" style="flex:0.8; text-align:center;">State</div>
+                    <div class="v-col" style="flex:1.2; text-align:center;">City</div>
+                    <div class="v-col" style="flex:1.2; text-align:center;">VIN</div>
+                    <div class="v-col" style="flex:0.8; text-align:center;">Year</div>
+                    <div class="v-col" style="flex:1.2; text-align:center;">Make</div>
+                    <div class="v-col" style="flex:1.2; text-align:center;">Model</div>
+                    <div class="v-col" style="flex:1.2; text-align:right;">Premium</div>
                   </div>
-                  <div class="v-table-body">No Records To Display.</div>
+                  <div class="v-table-body" style="padding:0;">
+                    <div style="display: flex; padding: 12px 16px; border-bottom: 1px solid #e1e6eb; align-items: center; font-size: 11px; color: #23282c;">
+                      <div style="flex:0.8; text-align:center;">1</div>
+                      <div style="flex:1.5; text-align:center;">Passenger</div>
+                      <div style="flex:1.2; text-align:center;">123456</div>
+                      <div style="flex:1.8; text-align:center;">New</div>
+                      <div style="flex:0.8; text-align:center;">AL</div>
+                      <div style="flex:1.2; text-align:center;">Birmingham</div>
+                      <div style="flex:1.2; text-align:center;">ABC123XYZ</div>
+                      <div style="flex:0.8; text-align:center;">2024</div>
+                      <div style="flex:1.2; text-align:center;">Toyota</div>
+                      <div style="flex:1.2; text-align:center;">Camry</div>
+                      <div style="flex:1.2; text-align:right;">$ 500.00</div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; align-items: center; font-size: 11px; color: #5d6773; padding: 12px 16px;">
+                      <span style="margin-right: 16px;">Rows per page: <select style="border:none; background:transparent; font-size:11px; color:#23282c; cursor:pointer;"><option>5</option></select></span>
+                      <span style="margin-right: 16px;">1-1 of 1</span>
+                      <i class="fa-solid fa-chevron-left" style="margin-right: 16px; color:#ccc; cursor:not-allowed;"></i>
+                      <i class="fa-solid fa-chevron-right" style="color:#ccc; cursor:not-allowed;"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -159,10 +191,30 @@ export function render() {
               <div class="v-table-body">No Records To Display.</div>
             </div>
 
+            <!-- SAVE / GET AVAILABLE CARRIERS -->
+            <div style="display:flex; justify-content:flex-end; gap:12px; margin-bottom:16px;">
+              <button class="btn btn-next" style="padding:8px 28px;">Save</button>
+              <button class="btn btn-next" style="padding:8px 28px; background:#1e3a5f;">Get Available Carriers</button>
+            </div>
+
+            <!-- CARRIER ROW -->
+            <div style="display:flex; align-items:center; background:#fff; border:1px solid #e1e6eb; border-radius:6px; padding:12px 16px; gap:24px; margin-bottom:24px; box-shadow:0 1px 4px rgba(0,0,0,0.07); font-size:13px;">
+              <div style="min-width:100px;">
+                <div style="font-size:11px; color:#5d6773;">Total Premium</div>
+                <div style="font-weight:600; color:#23282c;">$0.00</div>
+              </div>
+              <div style="color:#23282c; font-weight:500; min-width:130px;">Solartis Insurance</div>
+              <div style="color:#2196f3; cursor:pointer; min-width:100px;">Subjectivities</div>
+              <div style="color:#2196f3; cursor:pointer; min-width:60px;">Forms</div>
+              <div style="flex:1;"></div>
+              <button style="padding:7px 14px; background:#8ba0b5; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Preview Rating Worksheet</button>
+              <button style="padding:7px 14px; background:#8ba0b5; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Preview Quote</button>
+              <button id="create-quote-btn" style="padding:7px 14px; background:#1e3a5f; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Create Quote</button>
+            </div>
+
             <!-- BOTTOM BUTTONS -->
             <div class="bottom-actions" style="margin-bottom:24px;">
               <button class="btn btn-prev" id="prevBtn3">Previous</button>
-              <button class="btn btn-next" style="padding:8px 32px;">Save</button>
             </div>
 
           </div>
@@ -207,6 +259,19 @@ export function attach() {
       caContent.style.display = e.target.checked ? 'block' : 'none';
     });
   }
+
+  // Create Quote toast then navigate to Quote Details
+  document.getElementById('create-quote-btn').addEventListener('click', () => {
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;top:16px;right:16px;background:#2e7d32;color:#fff;padding:16px 20px;border-radius:4px;font-size:14px;font-weight:500;z-index:9999;display:flex;align-items:center;gap:16px;min-width:260px;box-shadow:0 4px 12px rgba(0,0,0,0.2);';
+    toast.innerHTML = '<span>Quote Created Successfully</span><span style="cursor:pointer;font-size:18px;line-height:1;margin-left:auto;">&#x2715;</span>';
+    document.body.appendChild(toast);
+    toast.querySelector('span:last-child').addEventListener('click', () => toast.remove());
+    setTimeout(() => {
+      if (toast.parentNode) toast.remove();
+      navigate('view4');
+    }, 1500);
+  });
 
   // Navigation
   document.getElementById('prevBtn3').addEventListener('click', () => navigate('view2'));

@@ -1,0 +1,746 @@
+
+
+=== Sheet: Input ===
+[
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Policy Detail"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Description",
+    "__EMPTY_3": "Value",
+    "__EMPTY_4": "Premium"
+  },
+  {
+    "__EMPTY_1": "Subline",
+    "__EMPTY_3": "Premises/Operations and Products/Completed Operations"
+  },
+  {
+    "__EMPTY_1": "Governmental Subdivision",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Limited Product Withdrawal Coverage",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Size Of Risk Rating",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Stop Gap Coverage",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Each Occurrence Limit",
+    "__EMPTY_3": "100,000 CSL"
+  },
+  {
+    "__EMPTY_1": "Medical Payments Exclusion for Entire Policy",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Medical Payments Limit",
+    "__EMPTY_3": "5,000"
+  },
+  {
+    "__EMPTY_1": "Damage to Premises Rented to You Limit",
+    "__EMPTY_3": "100,000"
+  },
+  {
+    "__EMPTY_1": "Personal and Advertising Injury Limit",
+    "__EMPTY_3": "100,000"
+  },
+  {
+    "__EMPTY_1": "General Aggregate Limit",
+    "__EMPTY_3": "200,000 CSL"
+  },
+  {
+    "__EMPTY_1": "Products/Completed Operations Aggregate Limit",
+    "__EMPTY_3": "200,000 CSL"
+  },
+  {
+    "__EMPTY_1": "Deductibles"
+  },
+  {
+    "__EMPTY_1": "    Premises/Operations BI Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    Products/Completed Operations BI Deductible",
+    "__EMPTY_3": "1,000 Per Occurrence"
+  },
+  {
+    "__EMPTY_1": "    Premises/Operations PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    Products/Completed Operations PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    Premises/Operations BI and PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    Products/Completed Operations BI and PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Coverage Form",
+    "__EMPTY_3": "Occurrence"
+  },
+  {
+    "__EMPTY_1": "Legal Entity",
+    "__EMPTY_3": "Individual"
+  },
+  {
+    "__EMPTY_1": "Is the insured a commercial pesticide applicator subject to N.D. CENT. CODE Sec. 4.1-33-01 (4) and 4.1-33-10?",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Limited Coverage For Designated Unmanned Aircraft",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Loss Of Electronic Data Coverage Applies",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Cyber Incident Liability Coverage Applies",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Experience Rating and Schedule Rating"
+  },
+  {
+    "__EMPTY_1": "    Experience Rating",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "    Schedule Rating",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Terrorism Risk Insurance Program (TRIP) terminates before policy expiration date",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Accept Certified Acts of Terrorism Coverage",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Composite Rating Applies",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Minimum Premium"
+  },
+  {
+    "__EMPTY_1": "    Premises/Operations Premium To Reach Minimum",
+    "__EMPTY_7": "$ 0.00"
+  },
+  {
+    "__EMPTY_1": "    Products/Completed Operations Premium To Reach Minimum",
+    "__EMPTY_7": "$ 0.00"
+  },
+  {
+    "__EMPTY_1": "    Special Combined Premium To Reach Minimum",
+    "__EMPTY_7": "$ 0.00"
+  },
+  {
+    "__EMPTY_1": "    Policy Premium To Reach Minimum",
+    "__EMPTY_7": "$ 0.00"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Policy Detail Form Summary"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Msg",
+    "__EMPTY": "Number",
+    "__EMPTY_1": "Name",
+    "__EMPTY_2": "Premium",
+    "__EMPTY_3": "Written",
+    "__EMPTY_4": "Total Written",
+    "__EMPTY_5": "Action"
+  },
+  {
+    "__EMPTY": "CG 00 01 04 13",
+    "__EMPTY_1": "Commercial General Liability Coverage Form - Occurrence (c)"
+  },
+  {
+    "__EMPTY": "IL 00 17 11 98",
+    "__EMPTY_1": "Common Policy Conditions (c)"
+  },
+  {
+    "__EMPTY": "CG 03 00 01 96",
+    "__EMPTY_1": "Deductible Liability Insurance (c)",
+    "__EMPTY_5": "View"
+  },
+  {
+    "__EMPTY": "CG 21 06 12 23",
+    "__EMPTY_1": "Exclusion - Access Or Disclosure Of Confidential Or Personal Material Or Information (c)"
+  },
+  {
+    "__EMPTY": "CG 40 35 12 23",
+    "__EMPTY_1": "Exclusion - Cyber Incident (c)"
+  },
+  {
+    "__EMPTY": "CG 00 69 12 23",
+    "__EMPTY_1": "Exclusion - Violation Of Law Addressing Data Privacy (c)"
+  },
+  {
+    "__EMPTY": "CG 00 70 01 26",
+    "__EMPTY_1": "Exclusion - War (c)"
+  },
+  {
+    "__EMPTY": "CG 21 73 01 15",
+    "__EMPTY_1": "Exclusion Of Certified Acts Of Terrorism (o)",
+    "__EMPTY_2": "$ 100.00",
+    "__EMPTY_3": "$ 100.00",
+    "__EMPTY_4": "$ 100.00",
+    "__EMPTY_5": "View"
+  },
+  {
+    "__EMPTY": "IL 02 34 09 17",
+    "__EMPTY_1": "North Dakota Changes - Cancellation And Nonrenewal (c)"
+  },
+  {
+    "__EMPTY": "IL 01 65 09 08",
+    "__EMPTY_1": "North Dakota Changes - Examination Of Your Books And Records (c)"
+  },
+  {
+    "__EMPTY": "IL 00 21 09 08",
+    "__EMPTY_1": "Nuclear Energy Liability Exclusion Endorsement (Broad Form) (c)"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Deductible Liability Insurance"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Description",
+    "__EMPTY_3": "Value"
+  },
+  {
+    "__EMPTY_1": "Location"
+  },
+  {
+    "__EMPTY_1": "Premises/Operations Bodily Injury Liability Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Premises/Operations Property Damage Liability Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Premises/Operations Bodily Injury Liability and/or",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Property Damage Liability Combined Deductible"
+  },
+  {
+    "__EMPTY_1": "Products/Completed Operations Bodily Injury Liability Deductible",
+    "__EMPTY_3": "1,000 Per Occurrence"
+  },
+  {
+    "__EMPTY_1": "Products/Completed Operations Property Damage Liability Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Products/Completed Operations Bodily Injury Liability and/or",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Property Damage Liability Combined Deductible"
+  },
+  {
+    "__EMPTY_1": "APPLICATION OF ENDORSEMENT (Enter below any limitations on the application of this endorsement."
+  },
+  {
+    "__EMPTY_1": "If no limitation is entered, the deductibles apply to damages for all \"bodily injury\" and \"property damage\", however caused)"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Exclusion Of Certified Acts Of Terrorism"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Description",
+    "__EMPTY_3": "Value",
+    "__EMPTY_4": "Premium"
+  },
+  {
+    "__EMPTY_1": "Manual Premium",
+    "__EMPTY_3": "$ 100.00",
+    "__EMPTY_7": "$ 100.00"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Location"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Select",
+    "__EMPTY": "Msg",
+    "__EMPTY_1": "Location Number",
+    "__EMPTY_2": "Address",
+    "__EMPTY_3": "Premium"
+  },
+  {
+    "__EMPTY_1": "1",
+    "__EMPTY_2": "NE",
+    "__EMPTY_3": "$ 386.00"
+  },
+  {
+    "__EMPTY_2": "NE, MD 12345"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Location Detail"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Description",
+    "__EMPTY_3": "Value"
+  },
+  {
+    "__EMPTY_1": "Location Number",
+    "__EMPTY_3": "1"
+  },
+  {
+    "__EMPTY_1": "Address",
+    "__EMPTY_3": "NE"
+  },
+  {
+    "__EMPTY_3": "NE, MD 12345"
+  },
+  {
+    "__EMPTY_1": "Premises/Operations"
+  },
+  {
+    "__EMPTY_1": "    BI Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    BI and PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Products/Completed Operations"
+  },
+  {
+    "__EMPTY_1": "    BI Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    BI and PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "Territory"
+  },
+  {
+    "__EMPTY_1": "    Premises/Operations Code",
+    "__EMPTY_3": "001"
+  },
+  {
+    "__EMPTY_1": "    Products/Completed Operations Code",
+    "__EMPTY_3": "999"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Classification"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Select",
+    "__EMPTY": "Msg",
+    "__EMPTY_1": "Class Description",
+    "__EMPTY_2": "Class Code",
+    "__EMPTY_3": "Premium"
+  },
+  {
+    "__EMPTY_1": "Ship Chandler Stores",
+    "__EMPTY_2": "18078",
+    "__EMPTY_3": "$ 386.00"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Classification Detail"
+  },
+  {
+    "Version 7.0.1.0 - Copyright © 2026 Insurity, Inc. - All rights reserved": "Description",
+    "__EMPTY_3": "Value",
+    "__EMPTY_4": "Premium"
+  },
+  {
+    "__EMPTY_1": "Product Coverage Only",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "Class Code",
+    "__EMPTY_3": "18078"
+  },
+  {
+    "__EMPTY_1": "Class Description",
+    "__EMPTY_3": "Ship Chandler Stores"
+  },
+  {
+    "__EMPTY_1": "Classification Type",
+    "__EMPTY_3": "Mercantile"
+  },
+  {
+    "__EMPTY_1": "Premises/Operations",
+    "__EMPTY_7": "$ 171.00"
+  },
+  {
+    "__EMPTY_1": "    Coverage",
+    "__EMPTY_3": "Premises/Operations"
+  },
+  {
+    "__EMPTY_1": "    BI Deductible",
+    "__EMPTY_3": "1,000 Per Occurrence"
+  },
+  {
+    "__EMPTY_1": "    PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    BI and PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    Premium Basis",
+    "__EMPTY_3": "Gross Sales"
+  },
+  {
+    "__EMPTY_1": "    'If Any' Basis",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "    Exposure",
+    "__EMPTY_3": "1500000.00"
+  },
+  {
+    "__EMPTY_1": "Products/Completed Operations",
+    "__EMPTY_7": "$ 215.00"
+  },
+  {
+    "__EMPTY_1": "    Coverage",
+    "__EMPTY_3": "Products/Completed Operations"
+  },
+  {
+    "__EMPTY_1": "    BI Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    BI and PD Deductible",
+    "__EMPTY_3": "No Deductible"
+  },
+  {
+    "__EMPTY_1": "    Premium Basis",
+    "__EMPTY_3": "Gross Sales"
+  },
+  {
+    "__EMPTY_1": "    'If Any' Basis",
+    "__EMPTY_3": "No"
+  },
+  {
+    "__EMPTY_1": "    Exposure",
+    "__EMPTY_3": "1500000.00"
+  }
+]
+
+=== Sheet: Calculations ===
+[
+  {
+    "Limits of Liability": "Each Occurrence Limit:",
+    "__EMPTY": "100,000 CSL",
+    "__EMPTY_1": "Personal and Advertising Injury Limit:",
+    "__EMPTY_2": "100,000"
+  },
+  {
+    "Limits of Liability": "General Aggregate Limit:",
+    "__EMPTY": "200,000 CSL",
+    "__EMPTY_1": "Products/Completed Operations Aggregate Limit:",
+    "__EMPTY_2": "200,000 CSL"
+  },
+  {
+    "Limits of Liability": "Policy Level Coverages"
+  },
+  {
+    "Limits of Liability": "Policy Level Forms"
+  },
+  {
+    "Limits of Liability": "Exclusion Of Certified Acts Of Terrorism"
+  },
+  {
+    "Limits of Liability": "Manual Premium",
+    "__EMPTY": "*",
+    "__EMPTY_1": "Package Mod Factor",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "Premium"
+  },
+  {
+    "Limits of Liability": "100",
+    "__EMPTY": "*",
+    "__EMPTY_1": "1",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "$ 100.00"
+  },
+  {
+    "Limits of Liability": "Location 1 Coverages"
+  },
+  {
+    "Limits of Liability": "Location 1 Forms"
+  },
+  {
+    "Limits of Liability": "Location 1 Classification 1 Details"
+  },
+  {
+    "Limits of Liability": "Class Description:",
+    "__EMPTY": "Ship Chandler Stores",
+    "__EMPTY_1": "Class Code:",
+    "__EMPTY_2": "18078"
+  },
+  {
+    "Limits of Liability": "Prem/Op Territory Code:",
+    "__EMPTY": "001",
+    "__EMPTY_1": "Prod/Comp Territory Code:",
+    "__EMPTY_2": "999"
+  },
+  {
+    "Limits of Liability": "Prem/Op Premium Basis:",
+    "__EMPTY": "Gross Sales",
+    "__EMPTY_1": "Prod/Comp Premium Basis:",
+    "__EMPTY_2": "Gross Sales"
+  },
+  {
+    "Limits of Liability": "Prem/Op ILF:",
+    "__EMPTY": "1",
+    "__EMPTY_1": "Prod/Comp ILF:",
+    "__EMPTY_2": "1"
+  },
+  {
+    "Limits of Liability": "Prem/Op BI Deductible:",
+    "__EMPTY": "1,000 Per Occurrence",
+    "__EMPTY_1": "Products BI Deductible:",
+    "__EMPTY_2": "No Deductible"
+  },
+  {
+    "Limits of Liability": "Prem/Op Homogeneity Index:",
+    "__EMPTY": "N/A",
+    "__EMPTY_1": "Products Homogeneity Index:",
+    "__EMPTY_2": "N/A"
+  },
+  {
+    "Limits of Liability": "Prem/Op Increased Limits Table Assignment:",
+    "__EMPTY": "2",
+    "__EMPTY_1": "Products Increased Limits Table Assignment:",
+    "__EMPTY_2": "B"
+  },
+  {
+    "Limits of Liability": "Prem/Op ELP:",
+    "__EMPTY": "Rate/Loss Cost Applies",
+    "__EMPTY_1": "Products ELP:",
+    "__EMPTY_2": "Rate/Loss Cost Applies"
+  },
+  {
+    "Limits of Liability": "Location 1 Classification 1 Coverages"
+  },
+  {
+    "Limits of Liability": "Prem/Op Coverage"
+  },
+  {
+    "Limits of Liability": "Loss Cost",
+    "__EMPTY": "*",
+    "__EMPTY_1": "LCM",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "Base Rate"
+  },
+  {
+    "Limits of Liability": "0.115",
+    "__EMPTY": "*",
+    "__EMPTY_1": "1",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "0.115"
+  },
+  {
+    "Limits of Liability": "BI Deductible Factor",
+    "__EMPTY": "+",
+    "__EMPTY_1": "PD Deductible Factor",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "Final Deductible Factor"
+  },
+  {
+    "Limits of Liability": "0.011",
+    "__EMPTY": "+",
+    "__EMPTY_1": "0",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "0.011"
+  },
+  {
+    "Limits of Liability": "CSL ILF",
+    "__EMPTY": "-",
+    "__EMPTY_1": "Final Deductible Factor",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "Final ILF"
+  },
+  {
+    "Limits of Liability": "1",
+    "__EMPTY": "-",
+    "__EMPTY_1": "0.011",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "0.989"
+  },
+  {
+    "Limits of Liability": "Base Rate",
+    "__EMPTY": "*",
+    "__EMPTY_1": "Final ILF",
+    "__EMPTY_2": "*",
+    "__EMPTY_3": "Package Mod Factor",
+    "__EMPTY_4": "*",
+    "__EMPTY_5": "Experience Rating Mod Factor",
+    "__EMPTY_6": "*",
+    "__EMPTY_7": "Expense Variation Factor",
+    "__EMPTY_8": "*",
+    "__EMPTY_9": "Mod to Use",
+    "__EMPTY_10": "=",
+    "__EMPTY_11": "Final Rate"
+  },
+  {
+    "Limits of Liability": "0.115",
+    "__EMPTY": "*",
+    "__EMPTY_1": "0.989",
+    "__EMPTY_2": "*",
+    "__EMPTY_3": "1",
+    "__EMPTY_4": "*",
+    "__EMPTY_5": "1",
+    "__EMPTY_6": "*",
+    "__EMPTY_7": "1",
+    "__EMPTY_8": "*",
+    "__EMPTY_9": "1",
+    "__EMPTY_10": "=",
+    "__EMPTY_11": "0.114"
+  },
+  {
+    "Limits of Liability": "Final Rate",
+    "__EMPTY": "*",
+    "__EMPTY_1": "Premises/Operations Exposure",
+    "__EMPTY_2": "/",
+    "__EMPTY_3": "1000",
+    "__EMPTY_4": "=",
+    "__EMPTY_5": "Premium"
+  },
+  {
+    "Limits of Liability": "0.114",
+    "__EMPTY": "*",
+    "__EMPTY_1": "1500000.00",
+    "__EMPTY_2": "/",
+    "__EMPTY_3": "1000",
+    "__EMPTY_4": "=",
+    "__EMPTY_5": "$ 171.00"
+  },
+  {
+    "Limits of Liability": "Products/Completed Operations Coverage"
+  },
+  {
+    "Limits of Liability": "Loss Cost",
+    "__EMPTY": "*",
+    "__EMPTY_1": "LCM",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "Base Rate"
+  },
+  {
+    "Limits of Liability": "0.143",
+    "__EMPTY": "*",
+    "__EMPTY_1": "1",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "0.143"
+  },
+  {
+    "Limits of Liability": "BI Deductible Factor",
+    "__EMPTY": "+",
+    "__EMPTY_1": "PD Deductible Factor",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "Final Deductible Factor"
+  },
+  {
+    "Limits of Liability": "0",
+    "__EMPTY": "+",
+    "__EMPTY_1": "0",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "0"
+  },
+  {
+    "Limits of Liability": "CSL ILF",
+    "__EMPTY": "-",
+    "__EMPTY_1": "Final Deductible Factor",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "Final ILF"
+  },
+  {
+    "Limits of Liability": "1",
+    "__EMPTY": "-",
+    "__EMPTY_1": "0",
+    "__EMPTY_2": "=",
+    "__EMPTY_3": "1"
+  },
+  {
+    "Limits of Liability": "Base Rate",
+    "__EMPTY": "*",
+    "__EMPTY_1": "Final ILF",
+    "__EMPTY_2": "*",
+    "__EMPTY_3": "Package Mod Factor",
+    "__EMPTY_4": "*",
+    "__EMPTY_5": "Experience Rating Mod Factor",
+    "__EMPTY_6": "*",
+    "__EMPTY_7": "Expense Variation Factor",
+    "__EMPTY_8": "*",
+    "__EMPTY_9": "Mod to Use",
+    "__EMPTY_10": "=",
+    "__EMPTY_11": "Final Rate"
+  },
+  {
+    "Limits of Liability": "0.143",
+    "__EMPTY": "*",
+    "__EMPTY_1": "1",
+    "__EMPTY_2": "*",
+    "__EMPTY_3": "1",
+    "__EMPTY_4": "*",
+    "__EMPTY_5": "1",
+    "__EMPTY_6": "*",
+    "__EMPTY_7": "1",
+    "__EMPTY_8": "*",
+    "__EMPTY_9": "1",
+    "__EMPTY_10": "=",
+    "__EMPTY_11": "0.143"
+  },
+  {
+    "Limits of Liability": "Final Rate",
+    "__EMPTY": "*",
+    "__EMPTY_1": "Products/Completed Operations Exposure",
+    "__EMPTY_2": "/",
+    "__EMPTY_3": "1000",
+    "__EMPTY_4": "=",
+    "__EMPTY_5": "Premium"
+  },
+  {
+    "Limits of Liability": "0.143",
+    "__EMPTY": "*",
+    "__EMPTY_1": "1500000.00",
+    "__EMPTY_2": "/",
+    "__EMPTY_3": "1000",
+    "__EMPTY_4": "=",
+    "__EMPTY_5": "$ 215.00"
+  },
+  {
+    "Limits of Liability": "Location 1 Classification 1 Forms"
+  },
+  {
+    "Limits of Liability": "Policy Total Premium:",
+    "__EMPTY": "$ 486.00"
+  }
+]
