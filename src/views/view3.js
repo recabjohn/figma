@@ -65,10 +65,6 @@ export function render() {
                   <select class="custom-select"><option>AL</option></select>
                 </div>
                 <div class="floating-group">
-                  <label>State *</label>
-                  <select class="custom-select"><option>AK-Premises/Operations and Products/Completed Operations</option></select>
-                </div>
-                <div class="floating-group">
                   <label>Effective Date</label>
                   <div class="icon-input">
                     <input type="text" class="custom-input" value="03/21/2026">
