@@ -1013,21 +1013,6 @@ export function render() {
                   </div>
                 </div>
 
-                <div class="vehicle-table-container">
-                  <div class="v-table-header">
-                    <div class="v-col">Unit<div class="v-line"></div></div>
-                    <div class="v-col">Class Code<div class="v-line"></div></div>
-                    <div class="v-col">Original Cost New<div class="v-line"></div></div>
-                    <div class="v-col">State<div class="v-line"></div></div>
-                    <div class="v-col">Year<div class="v-line"></div></div>
-                    <div class="v-col">Make<div class="v-line"></div></div>
-                    <div class="v-col">Model<div class="v-line"></div></div>
-                    <div class="v-col">VIN<div class="v-line"></div></div>
-                    <div class="v-col">Vehicle Sub Types<div class="v-line"></div></div>
-                    <div class="v-col" style="flex:0.5;">Action</div>
-                  </div>
-                  <div class="v-table-body">No Records To Display.</div>
-                </div>
               </div>
 
               <!-- BOTTOM BUTTONS -->

@@ -50,10 +50,17 @@ export function render() {
               </div>
 
               <!-- premium row -->
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#23282c;margin-bottom:16px;">
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#23282c;margin-bottom:4px;">
                 <span>Total Premium</span><i class="fa-solid fa-caret-down" style="font-size:10px;"></i>
                 <span style="font-weight:600;">$21.57</span>
               </div>
+              ${state.selectedGL && state.selectedCA ? `
+              <div style="margin-bottom:16px;font-size:13px;">
+                <span id="premium-breakdown-toggle" style="color:#2196f3;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                  <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> View line breakdown
+                </span>
+                <span id="premium-breakdown-detail" style="display:none;margin-left:16px;color:#23282c;">GL: $12.00&nbsp;&nbsp;&nbsp;CA: $9.57</span>
+              </div>` : '<div style="margin-bottom:16px;"></div>'}
 
               <!-- QUOTE LIST accordion -->
               <div style="border:1px solid #e1e6eb;border-radius:6px;overflow:hidden;margin-bottom:24px;">
@@ -221,6 +228,19 @@ export function render() {
 }
 
 export function attach() {
+  // ── Package premium breakdown toggle ─────────────────────────────────────────
+  const toggle = document.getElementById('premium-breakdown-toggle');
+  const detail = document.getElementById('premium-breakdown-detail');
+  if (toggle && detail) {
+    toggle.addEventListener('click', () => {
+      const isOpen = detail.style.display !== 'none';
+      detail.style.display = isOpen ? 'none' : 'inline';
+      toggle.querySelector('i').className = isOpen
+        ? 'fa-solid fa-chevron-right'
+        : 'fa-solid fa-chevron-down';
+    });
+  }
+
   // ── Tab switching ────────────────────────────────────────────────────────────
   const tabs = [
     { tab: document.getElementById('tab-quote-details'),    content: document.getElementById('tab-content-quote-details') },

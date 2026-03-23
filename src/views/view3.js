@@ -173,6 +173,14 @@ export function render() {
               </div>
             </div>
 
+            <!-- PACKAGE PREMIUM BREAKDOWN -->
+            ${state.selectedGL && state.selectedCA ? `
+            <div style="background:#fff;border:1px solid #e1e6eb;border-radius:6px;padding:12px 16px;display:flex;gap:24px;margin-bottom:16px;font-size:13px;">
+              <div><span style="color:#5d6773;">GL Premium</span>&nbsp;&nbsp;<span style="font-weight:600;color:#23282c;">$300.00</span></div>
+              <div><span style="color:#5d6773;">CA Premium</span>&nbsp;&nbsp;<span style="font-weight:600;color:#23282c;">$500.00</span></div>
+              <div style="margin-left:auto;"><span style="color:#5d6773;">Total Package Premium</span>&nbsp;&nbsp;<span style="font-weight:700;color:#1e3a5f;">$800.00</span></div>
+            </div>` : ''}
+
             <!-- TAXES AND FEES -->
             <div class="section-header" style="margin-top:8px;">
               Taxes and Fees <span class="sub-plus"><i class="fa-solid fa-plus"></i></span>
