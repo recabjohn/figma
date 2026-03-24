@@ -175,10 +175,41 @@ export function render() {
 
             <!-- PACKAGE PREMIUM BREAKDOWN -->
             ${state.selectedGL && state.selectedCA ? `
-            <div style="background:#fff;border:1px solid #e1e6eb;border-radius:6px;padding:12px 16px;display:flex;gap:24px;margin-bottom:16px;font-size:13px;">
-              <div><span style="color:#5d6773;">GL Premium</span>&nbsp;&nbsp;<span style="font-weight:600;color:#23282c;">$300.00</span></div>
-              <div><span style="color:#5d6773;">CA Premium</span>&nbsp;&nbsp;<span style="font-weight:600;color:#23282c;">$500.00</span></div>
-              <div style="margin-left:auto;"><span style="color:#5d6773;">Total Package Premium</span>&nbsp;&nbsp;<span style="font-weight:700;color:#1e3a5f;">$800.00</span></div>
+            <div style="background:#fff;border:1px solid #e1e6eb;border-radius:6px;margin-bottom:16px;overflow:hidden;">
+              <table style="width:100%;border-collapse:collapse;font-size:12px;color:#23282c;">
+                <thead>
+                  <tr style="background:#e8edf1;">
+                    <th style="padding:10px 16px;text-align:left;font-weight:600;font-size:11px;color:#5d6773;">Subline</th>
+                    <th style="padding:10px 16px;text-align:right;font-weight:600;font-size:11px;color:#5d6773;">Written Premium</th>
+                    <th style="padding:10px 16px;text-align:right;font-weight:600;font-size:11px;color:#5d6773;">Surplus Lines Tax</th>
+                    <th style="padding:10px 16px;text-align:right;font-weight:600;font-size:11px;color:#5d6773;">Stamping Fee</th>
+                    <th style="padding:10px 16px;text-align:right;font-weight:600;font-size:11px;color:#5d6773;">Total Premium</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid #e1e6eb;">
+                    <td style="padding:10px 16px;">General Liability</td>
+                    <td style="padding:10px 16px;text-align:right;">$300.00</td>
+                    <td style="padding:10px 16px;text-align:right;">$9.00</td>
+                    <td style="padding:10px 16px;text-align:right;">$0.75</td>
+                    <td style="padding:10px 16px;text-align:right;font-weight:600;">$309.75</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #e1e6eb;">
+                    <td style="padding:10px 16px;">Commercial Automobile</td>
+                    <td style="padding:10px 16px;text-align:right;">$500.00</td>
+                    <td style="padding:10px 16px;text-align:right;">$15.00</td>
+                    <td style="padding:10px 16px;text-align:right;">$1.25</td>
+                    <td style="padding:10px 16px;text-align:right;font-weight:600;">$516.25</td>
+                  </tr>
+                  <tr style="background:#f5f7f9;">
+                    <td style="padding:10px 16px;font-weight:700;color:#1e3a5f;">Package Total</td>
+                    <td style="padding:10px 16px;text-align:right;font-weight:700;color:#1e3a5f;">$800.00</td>
+                    <td style="padding:10px 16px;text-align:right;font-weight:700;color:#1e3a5f;">$24.00</td>
+                    <td style="padding:10px 16px;text-align:right;font-weight:700;color:#1e3a5f;">$2.00</td>
+                    <td style="padding:10px 16px;text-align:right;font-weight:700;color:#1e3a5f;">$826.00</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>` : ''}
 
             <!-- TAXES AND FEES -->
@@ -197,33 +228,42 @@ export function render() {
 
             <!-- SAVE / GET AVAILABLE CARRIERS -->
             <div style="display:flex; justify-content:flex-end; gap:12px; margin-bottom:16px;">
-              <button class="btn btn-next" style="padding:8px 28px;">Save</button>
-              <button class="btn btn-next" style="padding:8px 28px; background:#1e3a5f;">Get Available Carriers</button>
+              <button class="btn btn-next" id="save-btn" style="padding:8px 28px; background:#1e3a5f;">Save</button>
+              <button class="btn btn-next" id="get-carriers-btn" style="padding:8px 28px; background:#1e3a5f; display:none;">Get Available Carriers</button>
             </div>
 
             <!-- CARRIER ROW -->
-            <div style="display:flex; align-items:center; background:#fff; border:1px solid #e1e6eb; border-radius:6px; padding:12px 16px; gap:24px; margin-bottom:24px; box-shadow:0 1px 4px rgba(0,0,0,0.07); font-size:13px;">
+            <div id="carrier-row" style="display:none; align-items:center; background:#fff; border:1px solid #e1e6eb; border-radius:6px; padding:12px 16px; gap:24px; margin-bottom:24px; box-shadow:0 1px 4px rgba(0,0,0,0.07); font-size:13px;">
               <div style="min-width:100px;">
                 <div style="font-size:11px; color:#5d6773;">Total Premium</div>
-                <div style="font-weight:600; color:#23282c;">$0.00</div>
+                <div id="carrier-premium" style="font-weight:600; color:#23282c;">$0.00</div>
               </div>
               <div style="color:#23282c; font-weight:500; min-width:130px;">Solartis Insurance</div>
               <div style="color:#2196f3; cursor:pointer; min-width:100px;">Subjectivities</div>
               <div style="color:#2196f3; cursor:pointer; min-width:60px;">Forms</div>
               <div style="flex:1;"></div>
-              <button style="padding:7px 14px; background:#8ba0b5; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Preview Rating Worksheet</button>
-              <button style="padding:7px 14px; background:#8ba0b5; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Preview Quote</button>
-              <button id="create-quote-btn" style="padding:7px 14px; background:#1e3a5f; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Create Quote</button>
+              <button class="carrier-action-btn" style="display:none; padding:7px 14px; background:#1e3a5f; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Preview Rating Worksheet</button>
+              <button class="carrier-action-btn" style="display:none; padding:7px 14px; background:#1e3a5f; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Preview Quote</button>
+              <button id="create-quote-btn" class="carrier-action-btn" style="display:none; padding:7px 14px; background:#1e3a5f; color:#fff; border:none; border-radius:4px; font-size:12px; cursor:pointer;">Create Quote</button>
             </div>
 
             <!-- BOTTOM BUTTONS -->
-            <div class="bottom-actions" style="margin-bottom:24px;">
-              <button class="btn btn-prev" id="prevBtn3">Previous</button>
+            <div class="white-card" style="padding:24px; margin-bottom:24px;">
+              <div style="margin-bottom:48px;">
+                <button class="btn btn-prev" id="prevBtn3" style="background-color:#375471;">Previous</button>
+              </div>
+              <div style="display:flex; justify-content:flex-end;">
+                <button class="btn btn-next" id="nextBtn3" style="background-color:#375471;">Next</button>
+              </div>
             </div>
 
           </div>
         </main>
       </div>
+      <footer class="footer">
+        <div><span class="brand">Solartis</span> &copy; 2026</div>
+        <div>Powered by <span class="brand">Solartis</span></div>
+      </footer>
     </div>
   `;
 }
@@ -264,6 +304,20 @@ export function attach() {
     });
   }
 
+  // Save button - show Get Available Carriers
+  document.getElementById('save-btn').addEventListener('click', () => {
+    document.getElementById('get-carriers-btn').style.display = '';
+  });
+
+  // Get Available Carriers - show carrier row and action buttons, update premium
+  document.getElementById('get-carriers-btn').addEventListener('click', () => {
+    document.getElementById('carrier-row').style.display = 'flex';
+    document.getElementById('carrier-premium').textContent = '$826.00';
+    document.querySelectorAll('.carrier-action-btn').forEach(btn => {
+      btn.style.display = '';
+    });
+  });
+
   // Create Quote toast then navigate to Quote Details
   document.getElementById('create-quote-btn').addEventListener('click', () => {
     const toast = document.createElement('div');
@@ -279,6 +333,7 @@ export function attach() {
 
   // Navigation
   document.getElementById('prevBtn3').addEventListener('click', () => navigate('view2'));
+  document.getElementById('nextBtn3').addEventListener('click', () => navigate('view4'));
 
   attachDetailsToggle();
 }
