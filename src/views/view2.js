@@ -662,7 +662,7 @@ export function render() {
                 </div>
 
                 <div style="padding: 16px 24px 20px;">
-                  <button class="btn btn-prev" id="prevBtnGL" style="background-color:#2c2c2c;">Previous</button>
+                  <button class="btn btn-prev" id="prevBtnGL">Previous</button>
                 </div>
               </div>
 

@@ -657,11 +657,11 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 .btn-prev {
-  background-color: #e8604c;
+  background-color: #1e3a5f;
   color: #ffffff;
 }
 .btn-next {
-  background-color: #b0b8c1;
+  background-color: #1e3a5f;
   color: #ffffff;
 }
 

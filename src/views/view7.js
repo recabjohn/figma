@@ -67,9 +67,9 @@ export function render() {
                       <thead>
                         <tr style="border-bottom:1px solid #e1e6eb;">
                           <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Policy Number</th>
-                          <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Policy Type</th>
+                          <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Quote Type</th>
                           <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Quote Number</th>
-                          <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Policy Effective Date</th>
+                          <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Program</th>
                           <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Status</th>
                           <th style="padding:12px 16px;text-align:left;font-weight:600;color:#5d6773;">Premium</th>
                         </tr>
@@ -78,8 +78,8 @@ export function render() {
                         <tr style="border-bottom:1px solid #f0f3f6;">
                           <td style="padding:12px 16px;color:#2196f3;cursor:pointer;">POL-0005037-00</td>
                           <td style="padding:12px 16px;color:#23282c;">New Business</td>
-                          <td style="padding:12px 16px;color:#23282c;">Q00-0016909</td>
-                          <td style="padding:12px 16px;color:#23282c;">03/25/2026</td>
+                          <td style="padding:12px 16px;color:#2196f3;cursor:pointer;">Q00-0016909</td>
+                          <td style="padding:12px 16px;color:#23282c;"></td>
                           <td style="padding:12px 16px;color:#23282c;">Bound</td>
                           <td style="padding:12px 16px;color:#23282c;">$0.00</td>
                         </tr>
@@ -108,7 +108,7 @@ export function render() {
                   <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">Location Address</span><span style="color:#23282c;"></span></div>
                   <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">Agency Name</span><span style="color:#23282c;">test 23423</span></div>
                   <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">Agent Name</span><span style="color:#23282c;">agent</span></div>
-                  <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">Subline</span><span style="color:#23282c;">Commercial General Liability</span></div>
+                  <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">Subline</span><span style="color:#23282c;">${state.selectedGL && state.selectedCA ? 'Commercial Package Policy' : state.selectedGL ? 'Commercial General Liability' : 'Commercial Automobile'}</span></div>
                   <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">CarrierDisplayName</span><span style="color:#23282c;">Solartis Insurance</span></div>
                   <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">Submission Number</span><span style="color:#23282c;">SN133140</span></div>
                   <div style="display:flex;"><span style="color:#5d6773;font-weight:600;min-width:200px;">Quote Number</span><span style="color:#23282c;">Q00-0016909</span></div>

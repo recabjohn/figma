@@ -87,18 +87,6 @@ export function attach() {
   const caCheck = document.getElementById('ca-check');
 
   const prevBtn = document.querySelector('.btn-prev');
-  function updateButtons() {
-    if (glCheck.checked && caCheck.checked) {
-      nextBtn.style.backgroundColor = '#375471';
-      prevBtn.style.backgroundColor = '#2c2c2c';
-    } else {
-      nextBtn.style.backgroundColor = '';
-      prevBtn.style.backgroundColor = '';
-    }
-  }
-  glCheck.addEventListener('change', updateButtons);
-  caCheck.addEventListener('change', updateButtons);
-  updateButtons();
 
   nextBtn.addEventListener('click', () => {
     if (glCheck.checked && caCheck.checked) {
