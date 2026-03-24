@@ -46,7 +46,7 @@ export function render() {
 
             <!-- STEPPER WRAPPER -->
             <div class="stepper-wrapper">
-              <div class="stepper-card" style="gap:80px;">
+              <div class="stepper-card" style="justify-content:space-between;">
                 <div class="step completed">
                   <i class="fa-solid fa-check-circle"></i>
                   <span>Agency &amp; Agent</span>
@@ -70,11 +70,11 @@ export function render() {
               </div>
               <div class="secondary-tabs">
                 <div class="sec-tab active" id="tab-gl">
-                  <i class="fa-regular fa-circle-down"></i>
+                  <i class="fa-regular fa-circle-check"></i>
                   <span>General Liability</span>
                 </div>
                 <div class="sec-tab" id="tab-ca">
-                  <i class="fa-regular fa-circle-down"></i>
+                  <i class="fa-regular fa-circle-check"></i>
                   <span>Commercial Automobile</span>
                 </div>
               </div>
@@ -332,17 +332,17 @@ export function render() {
                   </div>
                 </div>
 
-                <div class="acc-row" id="risk-schedule-row" style="border-top:2px solid #f0f3f6; cursor:pointer;">
-                  <i class="fa-solid fa-chevron-right acc-icon" id="risk-schedule-icon"></i>
+                <div class="acc-row" id="risk-schedule-row" style="border-top:2px solid #f0f3f6; cursor:pointer; padding-bottom:20px;">
+                  <i class="fa-solid fa-chevron-down acc-icon" id="risk-schedule-icon"></i>
                   RISK SCHEDULE
                 </div>
-                
-                <div id="risk-schedule-content" style="display:none; padding-bottom: 24px;">
+
+                <div id="risk-schedule-content" style="padding-bottom: 24px;">
                   <div class="acc-row" id="location-row" style="padding-left: 48px; font-size: 14px; border-top: 1px solid #f0f3f6; cursor:pointer;">
-                    <i class="fa-solid fa-chevron-down acc-icon" id="location-icon"></i>
+                    <i class="fa-solid fa-chevron-right acc-icon" id="location-icon"></i>
                     LOCATION AND CLASSIFICATION INFORMATION
                   </div>
-                  <div id="location-content" style="padding: 16px 48px 24px;">
+                  <div id="location-content" style="display:none; padding: 16px 48px 24px;">
                     <div style="display:flex; align-items:center; font-size: 20px; color: #5d6773; margin-bottom: 12px; font-weight: 400;">
                       Location <i class="fa-solid fa-circle-plus" id="add-location-btn" style="margin-left: 8px; cursor: pointer; color: #8ba0b5; font-size: 16px;"></i>
                     </div>
@@ -660,10 +660,14 @@ export function render() {
                     </div>
                   </div>
                 </div>
+
+                <div style="padding: 16px 24px 20px;">
+                  <button class="btn btn-prev" id="prevBtnGL" style="background-color:#2c2c2c;">Previous</button>
+                </div>
               </div>
-              
-              <div class="bottom-actions">
-                <button class="btn btn-next" id="nextBtn">Next</button>
+
+              <div class="bottom-actions" style="justify-content:flex-end;">
+                <button class="btn btn-next" id="nextBtn" style="background-color:#375471;">Next</button>
               </div>
             </div>
 
@@ -1306,6 +1310,18 @@ export function attach() {
       policyRow.style.borderBottom = 'none';
       policyRow.style.paddingBottom = '16px';
     }
+  });
+
+  // GL Previous button
+  document.getElementById('prevBtnGL').addEventListener('click', () => navigate('view1'));
+
+  // GL Next button - switch to CA tab
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    tabGL.classList.remove('active');
+    tabCA.classList.add('active');
+    contentGL.style.display = 'none';
+    contentCA.style.display = 'block';
+    window.scrollTo(0, 0);
   });
 
   // Navigation
