@@ -6,8 +6,9 @@ import * as view5 from './views/view5.js';
 import * as view6 from './views/view6.js';
 import * as view7 from './views/view7.js';
 import * as view8 from './views/view8.js';
+import * as view9 from './views/view9.js';
 
-const views = { view1, view2, view3, view4, view5, view6, view7, view8 };
+const views = { view1, view2, view3, view4, view5, view6, view7, view8, view9 };
 
 export function navigate(viewName) {
   const view = views[viewName] ?? views['view1'];

@@ -43,10 +43,7 @@ export function render() {
               <!-- POLICY DETAILS CARD -->
               <div style="background:#fff;border:1px solid #e1e6eb;border-radius:6px;padding:20px 24px;margin-bottom:20px;">
                 <div style="font-size:18px;font-weight:600;color:#23282c;margin-bottom:12px;">Policy Details</div>
-                <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap;">
-                  <span id="return-to-quote" style="color:#0d7ea0;cursor:pointer;font-size:13px;font-weight:600;text-decoration:underline;">Return to Quote Details</span>
-                  <button id="issue-policy-btn" style="padding:8px 20px;background:#1e3a5f;color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer;font-weight:500;">Issue Policy</button>
-                </div>
+                <span id="return-to-quote" style="color:#0d7ea0;cursor:pointer;font-size:13px;font-weight:600;text-decoration:underline;display:block;margin-bottom:16px;">Return to Quote Details</span>
                 <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#23282c;margin-bottom:16px;">
                   <span>Total Premium</span>
                   <i id="premium-dropdown-toggle" class="fa-solid fa-caret-down" style="font-size:10px;cursor:pointer;"></i>
@@ -80,7 +77,7 @@ export function render() {
                           <td style="padding:12px 16px;color:#23282c;">New Business</td>
                           <td style="padding:12px 16px;color:#2196f3;cursor:pointer;">Q00-0016909</td>
                           <td style="padding:12px 16px;color:#23282c;"></td>
-                          <td style="padding:12px 16px;color:#23282c;">Bound</td>
+                          <td style="padding:12px 16px;color:#23282c;">Issued</td>
                           <td style="padding:12px 16px;color:#23282c;">$826.00</td>
                         </tr>
                       </tbody>
@@ -98,7 +95,7 @@ export function render() {
               <!-- POLICY NUMBER HEADER BAR -->
               <div style="background:linear-gradient(135deg,#dceaf4 0%,#c8dbe8 100%);border-radius:6px 6px 0 0;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;font-size:14px;">
                 <span style="color:#23282c;">Policy Number - <strong>POL-0005037-00</strong></span>
-                <span style="color:#23282c;">Policy Status - <strong>Bound</strong></span>
+                <span style="color:#23282c;">Policy Status - <strong>Issued</strong></span>
               </div>
 
               <!-- POLICY DETAIL GRID -->
@@ -147,9 +144,15 @@ export function render() {
                     <div style="flex:1.5;">uiuxunderwriter</div>
                     <div style="flex:2;">03-24-2026 07:18:57</div>
                   </div>
+                  <div style="display:flex;padding:10px 16px;border-bottom:1px solid #f0f3f6;font-size:12px;color:#23282c;align-items:center;">
+                    <div style="flex:1.5;">Issuance</div>
+                    <div style="flex:4;color:#2196f3;cursor:pointer;">Issuance_MAR-24-2026-7-38-37_-342365534.pdf</div>
+                    <div style="flex:1.5;">uiuxunderwriter</div>
+                    <div style="flex:2;">03-24-2026 07:38:36</div>
+                  </div>
                   <div style="display:flex;justify-content:flex-end;align-items:center;padding:10px 16px;font-size:11px;color:#5d6773;gap:12px;">
                     <span>Rows per page: <select style="border:none;background:transparent;font-size:11px;cursor:pointer;"><option>5</option></select></span>
-                    <span>1-3 of 3</span>
+                    <span>1-4 of 4</span>
                     <i class="fa-solid fa-chevron-left" style="color:#ccc;cursor:not-allowed;"></i>
                     <i class="fa-solid fa-chevron-right" style="color:#ccc;cursor:not-allowed;"></i>
                   </div>
@@ -351,8 +354,6 @@ export function attach() {
     { tab: document.getElementById('tab-reinstate'), content: null },
   ];
 
-  const contentTabs = tabs.filter(t => t.content);
-
   tabs.forEach(({ tab }) => {
     tab.addEventListener('click', () => {
       tabs.forEach(({ tab: t, content: c }) => {
@@ -397,11 +398,6 @@ export function attach() {
     });
   }
 
-  // Issue Policy
-  document.getElementById('issue-policy-btn').addEventListener('click', () => {
-    navigate('view8');
-  });
-
   // Return to Quote Details
   document.getElementById('return-to-quote').addEventListener('click', () => {
     navigate('view4');
@@ -415,7 +411,7 @@ export function attach() {
   // Show success toast
   const toast = document.createElement('div');
   toast.style.cssText = 'position:fixed;top:16px;right:16px;background:#2e7d32;color:#fff;padding:16px 20px;border-radius:4px;font-size:14px;font-weight:500;z-index:9999;display:flex;align-items:center;gap:16px;min-width:260px;box-shadow:0 4px 12px rgba(0,0,0,0.2);';
-  toast.innerHTML = '<span>Binder Issued Successfully</span><span style="cursor:pointer;font-size:18px;line-height:1;margin-left:auto;">&#x2715;</span>';
+  toast.innerHTML = '<span>Policy Issued Successfully</span><span style="cursor:pointer;font-size:18px;line-height:1;margin-left:auto;">&#x2715;</span>';
   document.body.appendChild(toast);
   toast.querySelector('span:last-child').addEventListener('click', () => toast.remove());
   setTimeout(() => { if (toast.parentNode) toast.remove(); }, 5000);

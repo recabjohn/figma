@@ -249,11 +249,8 @@ export function render() {
 
             <!-- BOTTOM BUTTONS -->
             <div class="white-card" style="padding:24px; margin-bottom:24px;">
-              <div style="margin-bottom:48px;">
+              <div>
                 <button class="btn btn-prev" id="prevBtn3" style="background-color:#375471;">Previous</button>
-              </div>
-              <div style="display:flex; justify-content:flex-end;">
-                <button class="btn btn-next" id="nextBtn3" style="background-color:#375471;">Next</button>
               </div>
             </div>
 
@@ -333,7 +330,6 @@ export function attach() {
 
   // Navigation
   document.getElementById('prevBtn3').addEventListener('click', () => navigate('view2'));
-  document.getElementById('nextBtn3').addEventListener('click', () => navigate('view4'));
 
   attachDetailsToggle();
 }

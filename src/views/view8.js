@@ -44,7 +44,7 @@ export function render() {
               <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#23282c;margin-bottom:16px;">
                 <span>Total Premium</span>
                 <i class="fa-solid fa-caret-down" style="font-size:10px;"></i>
-                <span style="font-weight:600;">$0.00</span>
+                <span style="font-weight:600;">$826.00</span>
               </div>
               <span id="return-to-program" style="color:#0d7ea0;cursor:pointer;font-size:13px;font-weight:600;text-decoration:underline;">Return To Program Selection</span>
             </div>
@@ -126,11 +126,6 @@ export function attach() {
 
   document.getElementById('issue-policy-submit').addEventListener('click', () => {
     state.policyStatus = 'Issued';
-    const toast = document.createElement('div');
-    toast.style.cssText = 'position:fixed;top:16px;right:16px;background:#2e7d32;color:#fff;padding:16px 20px;border-radius:4px;font-size:14px;font-weight:500;z-index:9999;display:flex;align-items:center;gap:16px;min-width:260px;box-shadow:0 4px 12px rgba(0,0,0,0.2);';
-    toast.innerHTML = '<span>Policy Issued Successfully</span><span style="cursor:pointer;font-size:18px;line-height:1;margin-left:auto;">&#x2715;</span>';
-    document.body.appendChild(toast);
-    toast.querySelector('span:last-child').addEventListener('click', () => toast.remove());
-    setTimeout(() => { if (toast.parentNode) toast.remove(); }, 5000);
+    navigate('view9');
   });
 }
