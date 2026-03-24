@@ -397,6 +397,11 @@ export function attach() {
     });
   }
 
+  // Issue Policy
+  document.getElementById('issue-policy-btn').addEventListener('click', () => {
+    navigate('view8');
+  });
+
   // Return to Quote Details
   document.getElementById('return-to-quote').addEventListener('click', () => {
     navigate('view4');
