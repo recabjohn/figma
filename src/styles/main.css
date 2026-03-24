@@ -285,7 +285,7 @@ body {
 .checkbox-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px;
 }
 .custom-check-row {
   display: flex;
@@ -301,21 +301,21 @@ body {
   width: 16px;
   height: 16px;
   border: 2px solid #a4afb7;
-  border-radius: 6px;
+  border-radius: 2px;
   background-color: #ffffff;
   position: relative;
   outline: none;
   cursor: pointer;
 }
 .custom-checkbox:checked {
-  background-color: #ffffff;
-  border-color: #a4afb7;
+  background-color: #1a8fc4;
+  border-color: #1a8fc4;
 }
 .custom-checkbox:checked::after {
   content: "\f00c";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  color: #5d6773;
+  color: #ffffff;
   font-size: 10px;
   position: absolute;
   top: 50%;
@@ -656,9 +656,12 @@ input:checked + .slider:before {
   font-weight: 500;
   cursor: pointer;
 }
-.btn-prev,
+.btn-prev {
+  background-color: #e8604c;
+  color: #ffffff;
+}
 .btn-next {
-  background-color: var(--btn-bg);
+  background-color: #b0b8c1;
   color: #ffffff;
 }
 

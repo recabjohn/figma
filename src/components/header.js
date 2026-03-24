@@ -6,7 +6,7 @@ export function renderHeader({ showTools = false } = {}) {
       </div>
       ${showTools ? `
         <div class="header-tools">
-          <i class="fa-regular fa-file-lines" style="cursor: pointer"></i>
+          <i class="fa-regular fa-comment-dots" style="cursor: pointer"></i>
           <i class="fa-regular fa-bell" style="cursor: pointer"></i>
           <div class="avatar" style="cursor: pointer">U</div>
         </div>

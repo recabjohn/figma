@@ -8,7 +8,7 @@ export function renderSidebar() {
         <i class="fa-solid fa-edit"></i>
       </div>
       <div class="side-icon">
-        <i class="fa-solid fa-search"></i>
+        <i class="fa-solid fa-magnifying-glass-chart"></i>
       </div>
       <div class="side-icon">
         <i class="fa-solid fa-cog"></i>

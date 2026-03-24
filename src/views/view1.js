@@ -22,7 +22,7 @@ export function render() {
           <div class="inner-canvas">
 
             <!-- STEPPER CARD -->
-            <div class="stepper-card" style="gap:100px;">
+            <div class="stepper-card" style="justify-content:space-between;">
               <div class="step completed">
                 <i class="fa-solid fa-check-circle"></i>
                 <span>Agency &amp; Agent</span>
@@ -38,6 +38,10 @@ export function render() {
               <div class="step">
                 <i class="fa-solid fa-file-alt"></i>
                 <span>Risk/Coverage</span>
+              </div>
+              <div class="step">
+                <i class="fa-solid fa-file-alt"></i>
+                <span>Program Selection</span>
               </div>
             </div>
 
@@ -69,15 +73,34 @@ export function render() {
           </div>
         </main>
       </div>
+      <footer class="footer">
+        <div><span class="brand">Solartis</span> &copy; 2026</div>
+        <div>Powered by <span class="brand">Solartis</span></div>
+      </footer>
     </div>
   `;
 }
 
 export function attach() {
   const nextBtn = document.getElementById('nextBtn');
+  const glCheck = document.getElementById('gl-check');
+  const caCheck = document.getElementById('ca-check');
+
+  const prevBtn = document.querySelector('.btn-prev');
+  function updateButtons() {
+    if (glCheck.checked && caCheck.checked) {
+      nextBtn.style.backgroundColor = '#375471';
+      prevBtn.style.backgroundColor = '#2c2c2c';
+    } else {
+      nextBtn.style.backgroundColor = '';
+      prevBtn.style.backgroundColor = '';
+    }
+  }
+  glCheck.addEventListener('change', updateButtons);
+  caCheck.addEventListener('change', updateButtons);
+  updateButtons();
+
   nextBtn.addEventListener('click', () => {
-    const glCheck = document.getElementById('gl-check');
-    const caCheck = document.getElementById('ca-check');
     if (glCheck.checked && caCheck.checked) {
       state.selectedGL = glCheck.checked;
       state.selectedCA = caCheck.checked;
